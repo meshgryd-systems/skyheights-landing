@@ -3,11 +3,13 @@ name: Deploy Website
 on:
   push:
     branches:
+      - master
       - staging
 
 jobs:
   deploy:
-    name: Deploy to Production
+    name:
+      Deploy to ${{ github.ref_name == 'master' && 'Production' || 'Staging' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -54,8 +56,12 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
+          username:
+            ${{ github.ref_name == 'master' && secrets.FTP_USERNAME||
+            secrets.FTP_STAGING_USERNAME }}
+          password:
+            ${{ github.ref_name == 'master' && secrets.FTP_PASSWORD ||
+            secrets.FTP_STAGING_PASSWORD }}
           local-dir: ./
           log-level: verbose
           exclude: |
