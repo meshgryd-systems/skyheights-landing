@@ -12,8 +12,8 @@ export default function TermsConditionsPage() {
     <>
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-royal-blue to-heritage-brown text-white py-20 md:py-28">
-        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
-          <h1 className="font-playfair font-bold text-4xl md:text-5xl lg:text-6xl mb-6">
+        <div className="container">
+          <h1 className="font-playfair font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
             Terms & Conditions
           </h1>
           <p className="text-xl md:text-2xl text-cream/90 max-w-3xl">

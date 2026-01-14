@@ -95,12 +95,12 @@ export default function NewsEventsPage() {
   return (
     <>
       {/* HERO - Phase 8: Show school is alive, structured, current */}
-      <section className="bg-royal-blue text-white py-20 md:py-28">
-        <div className="max-w-[1240px] mx-auto px-6 md:px-8 lg:px-12">
+      <section className="bg-[#eee5b5] text-white py-20 md:py-28">
+        <div className="container">
           <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight">
             News & Events
           </h1>
-          <p className="text-lg md:text-xl text-white/95 max-w-4xl leading-relaxed">
+          <p className="text-lg font-light md:text-xl text-white/95 max-w-4xl leading-relaxed">
             Stay informed about school updates, academic activities, and
             important notices.
           </p>
@@ -113,7 +113,7 @@ export default function NewsEventsPage() {
           title="News & Announcements"
           subtitle="Recent updates from Skyheights Academy"
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 container">
           {newsItems.map((news) => (
             <div
               key={news.id}

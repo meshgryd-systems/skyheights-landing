@@ -2,6 +2,12 @@ import SectionContainer from "../../components/SectionContainer";
 import SectionTitle from "../../components/SectionTitle";
 import ContactForm from "../../components/ContactForm";
 import Button from "../../components/Button";
+import {
+  HiBookOpen,
+  HiCurrencyDollar,
+  HiInformationCircle,
+  HiClipboardDocumentList
+} from "react-icons/hi2";
 
 export const metadata = {
   title: "Contact Us | Skyheights Academy",
@@ -13,14 +19,14 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-royal-blue to-heritage-brown text-white py-20 md:py-28">
-        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
-          <h1 className="font-playfair font-bold text-4xl md:text-5xl lg:text-6xl mb-6">
+      <section className="bg-[#eee5b5] text-white py-20 md:py-28">
+        <div className="container">
+          <h1 className="font-playfair font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
             Contact Us
           </h1>
-          <p className="text-xl md:text-2xl text-cream/90 max-w-3xl">
-            We're here to answer your questions and help you on your journey
-            with Skyheights Academy
+          <p className="text-lg font-light md:text-xl text-cream/90 max-w-3xl">
+            We&apos;re here to answer your questions and help you on your
+            journey with Skyheights Academy
           </p>
         </div>
       </section>
@@ -228,57 +234,62 @@ export default function ContactPage() {
         >
           Department Contacts
         </SectionTitle>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto">
           {[
             {
               department: "Admissions Office",
               email: "admissions@skyheightsacademy.com",
               phone: "+234 xxx xxx xxxx",
-              icon: "📋"
+              icon: HiClipboardDocumentList
             },
             {
               department: "Academic Affairs",
               email: "academics@skyheightsacademy.com",
               phone: "+234 xxx xxx xxxx",
-              icon: "📚"
+              icon: HiBookOpen
             },
             {
               department: "Finance & Accounts",
               email: "finance@skyheightsacademy.com",
               phone: "+234 xxx xxx xxxx",
-              icon: "💰"
+              icon: HiCurrencyDollar
             },
             {
               department: "General Enquiries",
               email: "info@skyheightsacademy.com",
               phone: "+234 xxx xxx xxxx",
-              icon: "ℹ️"
+              icon: HiInformationCircle
             }
-          ].map((dept, index) => (
-            <div
-              key={index}
-              className="bg-light-grey p-6 rounded-lg text-center hover:shadow-md transition-shadow"
-            >
-              <div className="text-5xl mb-3">{dept.icon}</div>
-              <h4 className="font-playfair font-bold text-lg text-deep-navy mb-3">
-                {dept.department}
-              </h4>
-              <div className="space-y-2 text-sm">
-                <a
-                  href={`mailto:${dept.email}`}
-                  className="block text-royal-blue hover:underline"
-                >
-                  {dept.email}
-                </a>
-                <a
-                  href={`tel:${dept.phone.replace(/\s/g, "")}`}
-                  className="block text-text-grey hover:text-royal-blue"
-                >
-                  {dept.phone}
-                </a>
+          ].map((dept, index) => {
+            const IconComponent = dept.icon;
+            return (
+              <div
+                key={index}
+                className="bg-light-grey p-6 rounded-lg text-center hover:shadow-md transition-shadow"
+              >
+                <div className="w-16 h-16 mx-auto mb-3 text-heritage-brown flex items-center justify-center">
+                  <IconComponent className="w-16 h-16" />
+                </div>
+                <h4 className="font-playfair font-bold text-lg text-deep-navy mb-3">
+                  {dept.department}
+                </h4>
+                <div className="space-y-2 text-sm">
+                  <a
+                    href={`mailto:${dept.email}`}
+                    className="block text-royal-blue hover:underline"
+                  >
+                    {dept.email}
+                  </a>
+                  <a
+                    href={`tel:${dept.phone.replace(/\s/g, "")}`}
+                    className="block text-text-grey hover:text-royal-blue"
+                  >
+                    {dept.phone}
+                  </a>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </SectionContainer>
 
@@ -356,8 +367,10 @@ export default function ContactPage() {
       {/* Social Media */}
       <SectionContainer background="white">
         <div className="text-center max-w-3xl mx-auto">
-          <SectionTitle centered>Connect With Us on Social Media</SectionTitle>
-          <p className="text-text-grey mb-8">
+          <SectionTitle centered className="mb-2">
+            Connect With Us on Social Media
+          </SectionTitle>
+          <p className="text-text-grey max-w-lg mx-auto mb-8">
             Follow us on social media for daily updates, photos, announcements,
             and school activities.
           </p>
@@ -391,40 +404,6 @@ export default function ContactPage() {
                 </svg>
               </a>
             ))}
-          </div>
-        </div>
-      </SectionContainer>
-
-      {/* Emergency Contact */}
-      <SectionContainer background="light">
-        <div className="max-w-3xl mx-auto bg-red-50 border-l-4 border-red-500 p-6 rounded-lg">
-          <div className="flex items-start">
-            <svg
-              className="w-6 h-6 text-red-500 mr-3 flex-shrink-0 mt-1"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fillRule="evenodd"
-                d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <div>
-              <h4 className="font-playfair font-bold text-red-900 mb-2">
-                Emergency Contact
-              </h4>
-              <p className="text-red-800 text-sm mb-2">
-                For urgent matters related to student safety or emergencies
-                during school hours:
-              </p>
-              <p className="text-red-900 font-bold text-lg">
-                +234 xxx xxx xxxx
-              </p>
-              <p className="text-red-700 text-sm mt-2">
-                Available 24/7 for emergencies only
-              </p>
-            </div>
           </div>
         </div>
       </SectionContainer>

@@ -13,7 +13,7 @@ export default function FacilitiesPage() {
     <>
       {/* HERO - Phase 7: Answer silent parent concerns */}
       <section className="bg-royal-blue text-white py-20 md:py-28">
-        <div className="max-w-[1240px] mx-auto px-6 md:px-8 lg:px-12">
+        <div className="container">
           <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight">
             Our Facilities & Safety Standards
           </h1>
@@ -28,12 +28,12 @@ export default function FacilitiesPage() {
       {/* LEARNING ENVIRONMENT OVERVIEW - Phase 7: Well-designed environment */}
       <SectionContainer background="white">
         <SectionHeader title="A Purpose-Built Learning Environment" />
-        <div className="max-w-4xl">
-          <p className="text-lg text-text-grey leading-relaxed">
+        <div className=" flex justify-center">
+          <p className="text-lg text-center max-w-4xl text-text-grey leading-relaxed">
             We believe that a well-designed environment plays a vital role in a
-            child's academic success. Our facilities are thoughtfully developed
-            to promote focus, safety, and positive learning experiences at every
-            level.
+            child&apos;s academic success. Our facilities are thoughtfully
+            developed to promote focus, safety, and positive learning
+            experiences at every level.
           </p>
         </div>
       </SectionContainer>
@@ -126,8 +126,8 @@ export default function FacilitiesPage() {
       {/* TECHNOLOGY & INNOVATION - Phase 7: ICT & Digital Learning */}
       <SectionContainer background="white">
         <SectionHeader title="ICT & Digital Learning" />
-        <div className="max-w-4xl">
-          <p className="text-lg text-text-grey leading-relaxed mb-8">
+        <div className=" flex justify-center flex-col items-center">
+          <p className="text-lg text-center max-w-4xl text-text-grey leading-relaxed mb-8">
             Our ICT and computer laboratory equips students with essential
             digital skills, supporting modern teaching methods and technological
             literacy from an early age.
@@ -170,7 +170,7 @@ export default function FacilitiesPage() {
           subtitle="Our commitment to a secure learning environment"
           centered
         />
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             {[
               {
@@ -291,8 +291,8 @@ export default function FacilitiesPage() {
       {/* OUTDOOR & RECREATIONAL - Phase 7: Playground & Recreational Areas */}
       <SectionContainer background="white">
         <SectionHeader title="Playground & Recreational Areas" />
-        <div className="max-w-4xl">
-          <p className="text-lg text-text-grey leading-relaxed">
+        <div className=" flex justify-center">
+          <p className="text-lg text-center max-w-4xl text-text-grey leading-relaxed">
             Our playground and outdoor spaces support physical development,
             social interaction, and balanced student growth in a safe and
             supervised environment.

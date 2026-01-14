@@ -1,6 +1,7 @@
 import SectionContainer from "../../../components/SectionContainer";
 import SectionHeader from "../../../components/SectionHeader";
 import Button from "../../../components/Button";
+import Curriculum from "../../../components/Curriculum";
 
 export const metadata = {
   title: "Nursery School in Lugbe Abuja | Skyheights Academy",
@@ -13,7 +14,7 @@ export default function NurseryPage() {
     <>
       {/* NURSERY HERO - Phase 5: Show structure + gentle academics */}
       <section className="bg-royal-blue text-white py-20 md:py-28">
-        <div className="max-w-[1240px] mx-auto px-6 md:px-8 lg:px-12">
+        <div className="container">
           <div className="inline-block px-4 py-2 bg-white/20 rounded-full mb-4">
             <span className="text-white text-sm font-medium">
               Ages 2 - 5 years
@@ -30,12 +31,12 @@ export default function NurseryPage() {
       </section>
 
       {/* LEARNING AREAS */}
-      <SectionContainer background="white">
+      <SectionContainer background="white" className="max-w-6xl mx-auto">
         <SectionHeader
           title="Learning Areas"
           subtitle="Building essential skills through structured, engaging activities"
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
           {[
             {
               area: "Early Literacy and Numeracy",
@@ -123,46 +124,7 @@ export default function NurseryPage() {
       {/* CURRICULUM */}
       <SectionContainer background="light">
         <SectionHeader title="Curriculum Framework" />
-        <div className="max-w-4xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div
-              className="bg-white p-6 rounded-[10px] text-center"
-              style={{ boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.05)" }}
-            >
-              <div className="text-4xl mb-3">🎨</div>
-              <h4 className="font-playfair font-bold text-deep-navy mb-2">
-                Montessori Principles
-              </h4>
-              <p className="text-text-grey text-sm">
-                Child-centered, hands-on learning at individual pace
-              </p>
-            </div>
-            <div
-              className="bg-white p-6 rounded-[10px] text-center"
-              style={{ boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.05)" }}
-            >
-              <div className="text-4xl mb-3">🇳🇬</div>
-              <h4 className="font-playfair font-bold text-deep-navy mb-2">
-                Nigerian Early Years Framework
-              </h4>
-              <p className="text-text-grey text-sm">
-                Alignment with national early childhood standards
-              </p>
-            </div>
-            <div
-              className="bg-white p-6 rounded-[10px] text-center"
-              style={{ boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.05)" }}
-            >
-              <div className="text-4xl mb-3">🇬🇧</div>
-              <h4 className="font-playfair font-bold text-deep-navy mb-2">
-                British Early Learning Standards
-              </h4>
-              <p className="text-text-grey text-sm">
-                Foundation stage goals for comprehensive development
-              </p>
-            </div>
-          </div>
-        </div>
+        <Curriculum />
       </SectionContainer>
 
       {/* OUTCOME */}
@@ -171,7 +133,7 @@ export default function NurseryPage() {
           <SectionHeader title="Learning Outcome" centered />
           <div className="bg-light-grey rounded-[14px] p-8 md:p-10">
             <p className="text-xl font-playfair text-deep-navy mb-4 leading-relaxed">
-              "Pupils develop readiness for formal primary education."
+              &quot;Pupils develop readiness for formal primary education.&quot;
             </p>
             <p className="text-text-grey leading-relaxed">
               By the end of the Nursery programme, children demonstrate
@@ -192,7 +154,7 @@ export default function NurseryPage() {
           </h2>
           <div className="w-[60px] h-[3px] bg-heritage-brown mx-auto mb-6"></div>
           <p className="text-lg text-text-grey mb-8 leading-relaxed">
-            Build a strong foundation for your child's academic journey with our
+            Build a strong foundation for your child&apos;s academic journey with our
             Montessori-inspired approach.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

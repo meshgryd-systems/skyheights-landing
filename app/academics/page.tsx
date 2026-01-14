@@ -2,6 +2,7 @@ import SectionContainer from "../../components/SectionContainer";
 import SectionHeader from "../../components/SectionHeader";
 import Button from "../../components/Button";
 import Link from "next/link";
+import { HiShieldCheck, HiGlobeAlt, HiSparkles } from "react-icons/hi2";
 
 export const metadata = {
   title: "Academics | Creche, Nursery, Primary & Secondary School in Lugbe",
@@ -13,12 +14,12 @@ export default function AcademicsPage() {
   return (
     <>
       {/* ACADEMICS LANDING PAGE HERO - Phase 5: Methodical, calm, authoritative */}
-      <section className="bg-heritage-brown text-white py-20 md:py-28">
-        <div className="max-w-[1240px] mx-auto px-6 md:px-8 lg:px-12">
+      <section className="bg-[#eee5b5] text-white py-20 md:py-28">
+        <div className="container">
           <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight">
             Our Academic Programmes
           </h1>
-          <p className="text-lg md:text-xl text-cream/95 max-w-4xl leading-relaxed">
+          <p className="text-lg font-light md:text-xl text-cream/95 max-w-4xl leading-relaxed">
             Skyheights Academy offers a comprehensive academic structure from
             early childhood through secondary education, combining Nigerian,
             British, and Montessori curricula to develop confident, capable, and
@@ -34,119 +35,55 @@ export default function AcademicsPage() {
           subtitle="Select a programme to learn more about curriculum, teaching approach, and learning outcomes"
           centered
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 container">
           {[
             {
               level: "Creche",
-              focus:
-                "Safe, nurturing environment with early sensory development",
-              icon: (
-                <svg
-                  className="w-12 h-12"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-                  />
-                </svg>
-              ),
-              href: "/academics/creche",
-              ages: "6 months - 2 years"
+              ages: "6 months - 2 years",
+              description:
+                "Our Creche programme provides a warm, secure, and nurturing environment where children take their first steps into structured learning through guided play and care. With small class sizes, trained caregivers, and 24-hour CCTV monitoring, we ensure your child receives individualized attention in a safe, stimulating setting that supports early motor skills, social interaction, and emotional development.",
+              href: "/academics/creche"
             },
             {
               level: "Nursery",
-              focus:
-                "Montessori-inspired foundations for literacy and numeracy",
-              icon: (
-                <svg
-                  className="w-12 h-12"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              ),
-              href: "/academics/nursery",
-              ages: "2 - 5 years"
+              ages: "2 - 5 years",
+              description:
+                "Our Nursery programme introduces foundational academic skills while nurturing curiosity, creativity, and confidence in young learners. Through Montessori principles combined with Nigerian and British early learning standards, children develop early literacy, numeracy, phonics, and social skills. By the end of the programme, pupils demonstrate readiness for formal primary education with a genuine love for learning.",
+              href: "/academics/nursery"
             },
             {
               level: "Primary",
-              focus: "Strong academic foundation with critical thinking skills",
-              icon: (
-                <svg
-                  className="w-12 h-12"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                  />
-                </svg>
-              ),
-              href: "/academics/primary",
-              ages: "6 - 11 years"
+              ages: "6 - 11 years",
+              description:
+                "The Primary School programme at Skyheights Academy lays a strong academic foundation, equipping pupils with critical thinking skills, discipline, and a love for learning. Our blended Nigerian and British curriculum covers core subjects including English, Mathematics, Science, Social Studies, and ICT, while continuous assessment ensures ongoing progress. Students develop not only academic excellence but also moral character and co-curricular engagement.",
+              href: "/academics/primary"
             },
             {
               level: "Secondary",
-              focus:
-                "Rigorous preparation for examinations and higher education",
-              icon: (
-                <svg
-                  className="w-12 h-12"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
-                  />
-                </svg>
-              ),
-              href: "/academics/secondary",
-              ages: "12 - 17 years"
+              ages: "12 - 17 years",
+              description:
+                "Our Secondary School programme prepares students for higher education and future careers through rigorous academics, discipline, and character development. Students choose from Science, Commercial, or Arts tracks while receiving comprehensive WAEC and NECO preparation. With a 98% pass rate and 100% university placement record, we ensure students are ready for both examinations and life beyond school.",
+              href: "/academics/secondary"
             }
           ].map((program, index) => (
             <Link key={index} href={program.href}>
               <div
-                className="bg-white rounded-[14px] border-2 border-divider-grey hover:border-heritage-brown transition-all duration-300 p-8 text-center h-full group"
+                className="bg-white rounded-[14px] border-2 border-divider-grey hover:border-heritage-brown transition-all duration-300 p-8 h-full group"
                 style={{
                   boxShadow:
                     "0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03)"
                 }}
               >
-                <div className="w-20 h-20 bg-heritage-brown/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-heritage-brown transition-colors">
-                  <div className="text-heritage-brown group-hover:text-white transition-colors">
-                    {program.icon}
-                  </div>
-                </div>
-                <h3 className="text-2xl md:text-[28px] font-playfair font-bold text-deep-navy mb-2">
+                <h3 className="text-2xl md:text-[28px] font-playfair font-bold text-deep-navy mb-3">
                   {program.level}
                 </h3>
                 <p className="text-sm text-royal-blue font-medium mb-4">
                   {program.ages}
                 </p>
                 <p className="text-text-grey text-sm mb-6 leading-relaxed">
-                  {program.focus}
+                  {program.description}
                 </p>
-                <div className="text-heritage-brown font-medium text-sm flex items-center justify-center group-hover:text-heritage-brown">
+                <div className="text-heritage-brown font-medium text-sm flex items-center group-hover:text-heritage-brown">
                   View Programme
                   <svg
                     className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
@@ -179,7 +116,7 @@ export default function AcademicsPage() {
           {[
             {
               system: "Nigerian Curriculum",
-              flag: "🇳🇬",
+              icon: HiShieldCheck,
               benefit: "Local Academic Strength",
               description:
                 "Full alignment with NERDC standards ensures students excel in national examinations and understand their cultural context.",
@@ -191,7 +128,7 @@ export default function AcademicsPage() {
             },
             {
               system: "British Curriculum",
-              flag: "🇬🇧",
+              icon: HiGlobeAlt,
               benefit: "Global Standards",
               description:
                 "Cambridge-inspired methods emphasize critical thinking, inquiry-based learning, and international perspectives.",
@@ -203,7 +140,7 @@ export default function AcademicsPage() {
             },
             {
               system: "Montessori Principles",
-              flag: "🎨",
+              icon: HiSparkles,
               benefit: "Independent Thinking",
               description:
                 "Child-centered approach in early years promotes self-directed learning, practical life skills, and intrinsic motivation.",
@@ -213,53 +150,58 @@ export default function AcademicsPage() {
                 "Love for learning"
               ]
             }
-          ].map((curriculum, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-[14px] p-8"
-              style={{
-                boxShadow:
-                  "0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03)"
-              }}
-            >
-              <div className="text-5xl text-center mb-4">{curriculum.flag}</div>
-              <h3 className="text-xl font-playfair font-bold text-deep-navy mb-2 text-center">
-                {curriculum.system}
-              </h3>
-              <p className="text-heritage-brown text-sm font-semibold mb-4 text-center">
-                {curriculum.benefit}
-              </p>
-              <p className="text-text-grey text-sm mb-4 leading-relaxed">
-                {curriculum.description}
-              </p>
-              <div className="border-t border-divider-grey pt-4 mt-4">
-                <p className="text-xs font-semibold text-deep-navy mb-2">
-                  Key Outcomes:
+          ].map((curriculum, index) => {
+            const IconComponent = curriculum.icon;
+            return (
+              <div
+                key={index}
+                className="bg-white rounded-[14px] p-8"
+                style={{
+                  boxShadow:
+                    "0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03)"
+                }}
+              >
+                <div className="w-16 h-16 bg-heritage-brown/10 rounded-full flex items-center justify-center mx-auto mb-4 text-heritage-brown">
+                  <IconComponent className="w-12 h-12" />
+                </div>
+                <h3 className="text-xl font-playfair font-bold text-deep-navy mb-2 text-center">
+                  {curriculum.system}
+                </h3>
+                <p className="text-heritage-brown text-sm font-semibold mb-4 text-center">
+                  {curriculum.benefit}
                 </p>
-                <ul className="space-y-1">
-                  {curriculum.outcomes.map((outcome, idx) => (
-                    <li
-                      key={idx}
-                      className="text-xs text-text-grey flex items-center"
-                    >
-                      <svg
-                        className="w-3 h-3 text-royal-blue mr-2 shrink-0"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
+                <p className="text-text-grey text-sm mb-4 leading-relaxed">
+                  {curriculum.description}
+                </p>
+                <div className="border-t border-divider-grey pt-4 mt-4">
+                  <p className="text-xs font-semibold text-deep-navy mb-2">
+                    Key Outcomes:
+                  </p>
+                  <ul className="space-y-1">
+                    {curriculum.outcomes.map((outcome, idx) => (
+                      <li
+                        key={idx}
+                        className="text-xs text-text-grey flex items-center"
                       >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      {outcome}
-                    </li>
-                  ))}
-                </ul>
+                        <svg
+                          className="w-3 h-3 text-royal-blue mr-2 shrink-0"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        {outcome}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
         <div
           className="mt-12 max-w-3xl mx-auto text-center p-6 bg-white rounded-[14px]"

@@ -13,12 +13,12 @@ export default function AdmissionsPage() {
   return (
     <>
       {/* ADMISSIONS HERO SECTION - Phase 4: Reassure + guide, not pressure */}
-      <section className="bg-heritage-brown text-white py-20 md:py-28">
-        <div className="max-w-[1240px] mx-auto px-6 md:px-8 lg:px-12">
+      <section className="bg-[#eee5b5] text-white py-20 md:py-28">
+        <div className="container">
           <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight">
             Admissions at Skyheights Academy
           </h1>
-          <p className="text-lg md:text-xl text-cream/95 max-w-3xl leading-relaxed mb-10">
+          <p className="text-lg font-light md:text-xl text-cream/95 max-w-3xl leading-relaxed mb-10">
             We welcome pupils into a structured, nurturing, and academically
             focused learning environment designed to help every child thrive.
           </p>
@@ -27,12 +27,7 @@ export default function AdmissionsPage() {
             <Button href="#apply" variant="secondary" size="lg">
               Apply for Admission
             </Button>
-            <Button
-              href="#enquiry"
-              variant="outline"
-              size="lg"
-              className="bg-transparent border-white text-white hover:bg-white hover:text-heritage-brown"
-            >
+            <Button href="#enquiry" variant="outline" size="lg">
               Make an Enquiry
             </Button>
           </div>
@@ -321,7 +316,7 @@ export default function AdmissionsPage() {
       {/* Entry Levels */}
       <SectionContainer background="light">
         <SectionHeader title="Entry Levels & Requirements" centered />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
           {[
             {
               level: "Creche & Nursery",
@@ -370,11 +365,16 @@ export default function AdmissionsPage() {
               ]
             }
           ].map((item, index) => (
-            <div key={index} className="bg-white p-8 rounded-lg shadow-md">
-              <h3 className="font-playfair font-bold text-2xl text-deep-navy mb-2">
+            <div
+              key={index}
+              className="bg-white rounded-lg border border-divider-grey hover:border-heritage-brown hover:shadow-xl transition-all duration-300 p-8 group"
+            >
+              <h3 className="font-playfair font-bold text-2xl text-deep-navy mb-3">
                 {item.level}
               </h3>
-              <p className="text-royal-blue font-medium mb-6">{item.ages}</p>
+              <p className="text-sm text-royal-blue font-medium mb-4">
+                {item.ages}
+              </p>
               <h4 className="font-semibold text-deep-navy mb-3">
                 Required Documents:
               </h4>
@@ -458,9 +458,9 @@ export default function AdmissionsPage() {
 
       {/* STRONG CTA SECTION - Phase 4: Conversion Point */}
       <section className="bg-cream py-20 md:py-24" id="apply">
-        <div className="max-w-[1240px] mx-auto px-6 md:px-8 lg:px-12 text-center">
+        <div className="container text-center">
           <h2 className="text-[2.5rem] md:text-[2.75rem] font-playfair font-bold text-deep-navy mb-6 leading-tight">
-            Begin Your Child's Journey at Skyheights Academy
+            Begin Your Child&apos;s Journey at Skyheights Academy
           </h2>
           <div className="w-[60px] h-[3px] bg-heritage-brown mx-auto mb-6"></div>
           <p className="text-lg text-text-grey mb-10 max-w-2xl mx-auto leading-relaxed">
@@ -560,9 +560,10 @@ export default function AdmissionsPage() {
           >
             <div className="mb-6 p-4 bg-royal-blue/10 rounded-lg border border-royal-blue/20">
               <p className="text-sm text-deep-navy">
-                <strong>What happens next:</strong> After submission, you'll
-                receive an automatic confirmation email, followed by a personal
-                response from our admissions team within one business day.
+                <strong>What happens next:</strong> After submission,
+                you&apos;ll receive an automatic confirmation email, followed by
+                a personal response from our admissions team within one business
+                day.
               </p>
             </div>
             <ContactForm />

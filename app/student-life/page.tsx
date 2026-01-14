@@ -2,6 +2,14 @@ import SectionContainer from "../../components/SectionContainer";
 import SectionTitle from "../../components/SectionTitle";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
+import {
+  HiShieldCheck,
+  HiUserGroup,
+  HiDocumentText,
+  HiSparkles,
+  HiHeart,
+  HiUsers
+} from "react-icons/hi2";
 
 export const metadata = {
   title: "Student Life | Skyheights Academy",
@@ -14,8 +22,8 @@ export default function StudentLifePage() {
     <>
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-heritage-brown to-royal-blue text-white py-20 md:py-28">
-        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
-          <h1 className="font-playfair font-bold text-4xl md:text-5xl lg:text-6xl mb-6">
+        <div className="container">
+          <h1 className="font-playfair font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
             Student Life
           </h1>
           <p className="text-xl md:text-2xl text-cream/90 max-w-3xl">
@@ -314,7 +322,21 @@ export default function StudentLifePage() {
           </div>
           <div className="bg-cream rounded-lg p-12 flex items-center justify-center min-h-[500px]">
             <div className="text-center">
-              <div className="text-8xl mb-4">🌟</div>
+              <div className="w-24 h-24 mx-auto mb-4 text-heritage-brown">
+                <svg
+                  className="w-24 h-24"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+                  />
+                </svg>
+              </div>
               <p className="text-2xl font-playfair font-bold text-deep-navy">
                 Building Character,
                 <br />
@@ -334,47 +356,52 @@ export default function StudentLifePage() {
               title: "Respect & Discipline",
               description:
                 "We maintain high standards of discipline while fostering mutual respect between students, teachers, and staff. Our code of conduct emphasizes responsibility and good behavior.",
-              icon: "🎯"
+              icon: HiShieldCheck
             },
             {
               title: "Diversity & Inclusion",
               description:
                 "We celebrate diversity and create an inclusive environment where every student feels valued, regardless of background, ethnicity, or ability.",
-              icon: "🤝"
+              icon: HiUserGroup
             },
             {
               title: "Academic Integrity",
               description:
                 "We promote honesty, originality, and ethical academic conduct. Students learn the importance of doing their own work and giving proper credit.",
-              icon: "📝"
+              icon: HiDocumentText
             },
             {
               title: "Environmental Consciousness",
               description:
                 "We teach students to care for the environment through recycling programs, green initiatives, and sustainability education.",
-              icon: "🌱"
+              icon: HiSparkles
             },
             {
               title: "Health & Wellness",
               description:
                 "We prioritize physical and mental health through sports, counseling services, health education, and a supportive school environment.",
-              icon: "❤️"
+              icon: HiHeart
             },
             {
               title: "Parent-School Partnership",
               description:
                 "We maintain strong partnerships with parents through regular communication, PTA meetings, and collaborative support of student development.",
-              icon: "👨‍👩‍👧‍👦"
+              icon: HiUsers
             }
-          ].map((item, index) => (
-            <div key={index} className="bg-white p-6 rounded-lg shadow-md">
-              <div className="text-5xl mb-4">{item.icon}</div>
-              <h3 className="font-playfair font-bold text-xl text-deep-navy mb-3">
-                {item.title}
-              </h3>
-              <p className="text-text-grey">{item.description}</p>
-            </div>
-          ))}
+          ].map((item, index) => {
+            const IconComponent = item.icon;
+            return (
+              <div key={index} className="bg-white p-6 rounded-lg shadow-md">
+                <div className="w-12 h-12 mb-4 text-heritage-brown flex items-center justify-center">
+                  <IconComponent className="w-12 h-12" />
+                </div>
+                <h3 className="font-playfair font-bold text-xl text-deep-navy mb-3">
+                  {item.title}
+                </h3>
+                <p className="text-text-grey">{item.description}</p>
+              </div>
+            );
+          })}
         </div>
       </SectionContainer>
 

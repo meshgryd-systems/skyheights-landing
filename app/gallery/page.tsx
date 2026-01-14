@@ -4,6 +4,12 @@ import { useState } from "react";
 import SectionContainer from "../../components/SectionContainer";
 import SectionHeader from "../../components/SectionHeader";
 import Button from "../../components/Button";
+import {
+  HiBookOpen,
+  HiBuildingOffice,
+  HiCalendar,
+  HiUserGroup
+} from "react-icons/hi2";
 
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -100,12 +106,12 @@ export default function GalleryPage() {
   return (
     <>
       {/* HERO - Phase 8: Let parents see the environment */}
-      <section className="bg-heritage-brown text-white py-20 md:py-28">
-        <div className="max-w-[1240px] mx-auto px-6 md:px-8 lg:px-12">
+      <section className="bg-[#eee5b5] text-white py-20 md:py-28">
+        <div className="container">
           <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight">
             Gallery
           </h1>
-          <p className="text-lg md:text-xl text-cream/95 max-w-4xl leading-relaxed">
+          <p className="text-lg font-light md:text-xl text-cream/95 max-w-4xl leading-relaxed">
             A glimpse into life, learning, and growth at Skyheights Academy.
           </p>
         </div>
@@ -140,11 +146,19 @@ export default function GalleryPage() {
                 {/* Placeholder for actual images */}
                 <div className="w-full h-full flex items-center justify-center">
                   <div className="text-center p-6">
-                    <div className="text-6xl mb-4">
-                      {item.category === "classrooms" && "📚"}
-                      {item.category === "facilities" && "🏫"}
-                      {item.category === "events" && "🎉"}
-                      {item.category === "student-life" && "👨‍🎓"}
+                    <div className="w-16 h-16 mx-auto mb-4 text-heritage-brown flex items-center justify-center">
+                      {item.category === "classrooms" && (
+                        <HiBookOpen className="w-16 h-16" />
+                      )}
+                      {item.category === "facilities" && (
+                        <HiBuildingOffice className="w-16 h-16" />
+                      )}
+                      {item.category === "events" && (
+                        <HiCalendar className="w-16 h-16" />
+                      )}
+                      {item.category === "student-life" && (
+                        <HiUserGroup className="w-16 h-16" />
+                      )}
                     </div>
                     <p className="text-text-grey text-sm">{item.title}</p>
                   </div>

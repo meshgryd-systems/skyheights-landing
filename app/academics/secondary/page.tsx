@@ -1,6 +1,12 @@
 import SectionContainer from "../../../components/SectionContainer";
 import SectionHeader from "../../../components/SectionHeader";
 import Button from "../../../components/Button";
+import {
+  HiBookOpen,
+  HiCalculator,
+  HiBuildingLibrary,
+  HiComputerDesktop
+} from "react-icons/hi2";
 
 export const metadata = {
   title: "Secondary School in Lugbe Abuja | Skyheights Academy",
@@ -13,7 +19,7 @@ export default function SecondaryPage() {
     <>
       {/* SECONDARY HERO - Phase 5: Prove academic depth & future readiness */}
       <section className="bg-heritage-brown text-white py-20 md:py-28">
-        <div className="max-w-[1240px] mx-auto px-6 md:px-8 lg:px-12">
+        <div className="container">
           <div className="inline-block px-4 py-2 bg-cream/20 rounded-full mb-4">
             <span className="text-cream text-sm font-medium">
               Ages 12 - 17 years (JSS1 - SS3)
@@ -44,21 +50,26 @@ export default function SecondaryPage() {
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                { subject: "English Language", icon: "📖" },
-                { subject: "Mathematics", icon: "🔢" },
-                { subject: "Civic Education", icon: "🏛️" },
-                { subject: "Computer Studies", icon: "💻" }
-              ].map((item, index) => (
-                <div
-                  key={index}
-                  className="bg-light-grey rounded-[10px] p-4 text-center"
-                >
-                  <div className="text-3xl mb-2">{item.icon}</div>
-                  <p className="text-sm font-semibold text-deep-navy">
-                    {item.subject}
-                  </p>
-                </div>
-              ))}
+                { subject: "English Language", icon: HiBookOpen },
+                { subject: "Mathematics", icon: HiCalculator },
+                { subject: "Civic Education", icon: HiBuildingLibrary },
+                { subject: "Computer Studies", icon: HiComputerDesktop }
+              ].map((item, index) => {
+                const IconComponent = item.icon;
+                return (
+                  <div
+                    key={index}
+                    className="bg-light-grey rounded-[10px] p-4 text-center"
+                  >
+                    <div className="w-10 h-10 mx-auto mb-2 text-heritage-brown flex items-center justify-center">
+                      <IconComponent className="w-10 h-10" />
+                    </div>
+                    <p className="text-sm font-semibold text-deep-navy">
+                      {item.subject}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
@@ -148,7 +159,7 @@ export default function SecondaryPage() {
       {/* CURRICULUM */}
       <SectionContainer background="light">
         <SectionHeader title="Examination Preparation" />
-        <div className="max-w-4xl">
+        <div className=" flex justify-center flex-col items-center">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <div
               className="bg-white rounded-[10px] p-6"
@@ -250,7 +261,7 @@ export default function SecondaryPage() {
               outcome: "Strong Academic Results",
               description:
                 "Consistently high performance in WAEC and NECO examinations with excellent distinction rates.",
-              stat: "98%",
+              stat: "100%",
               label: "Pass Rate"
             },
             {
