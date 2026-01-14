@@ -62,7 +62,7 @@ jobs:
           password:
             ${{ github.ref_name == 'master' && secrets.FTP_PASSWORD ||
             secrets.FTP_STAGING_PASSWORD }}
-          protocol: sftp
+          protocol: ftps
           local-dir: ./
           log-level: verbose
           exclude: |
