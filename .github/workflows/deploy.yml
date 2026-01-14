@@ -57,11 +57,12 @@ jobs:
         with:
           server: ${{ secrets.FTP_SERVER }}
           username:
-            ${{ github.ref_name == 'master' && secrets.FTP_USERNAME||
+            ${{ github.ref_name == 'master' && secrets.FTP_USERNAME ||
             secrets.FTP_STAGING_USERNAME }}
           password:
             ${{ github.ref_name == 'master' && secrets.FTP_PASSWORD ||
             secrets.FTP_STAGING_PASSWORD }}
+          protocol: sftp
           local-dir: ./
           log-level: verbose
           exclude: |
