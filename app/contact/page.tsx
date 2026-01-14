@@ -1,0 +1,433 @@
+import SectionContainer from "../../components/SectionContainer";
+import SectionTitle from "../../components/SectionTitle";
+import ContactForm from "../../components/ContactForm";
+import Button from "../../components/Button";
+
+export const metadata = {
+  title: "Contact Us | Skyheights Academy",
+  description:
+    "Get in touch with Skyheights Academy. Visit us, call, or send us a message. We are here to help with your enquiries."
+};
+
+export default function ContactPage() {
+  return (
+    <>
+      {/* Hero Section */}
+      <section className="bg-gradient-to-r from-royal-blue to-heritage-brown text-white py-20 md:py-28">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+          <h1 className="font-playfair font-bold text-4xl md:text-5xl lg:text-6xl mb-6">
+            Contact Us
+          </h1>
+          <p className="text-xl md:text-2xl text-cream/90 max-w-3xl">
+            We're here to answer your questions and help you on your journey
+            with Skyheights Academy
+          </p>
+        </div>
+      </section>
+
+      {/* Contact Information Cards */}
+      <SectionContainer background="white">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          {[
+            {
+              icon: (
+                <svg
+                  className="w-8 h-8"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+              ),
+              title: "Visit Us",
+              content: (
+                <>
+                  <p className="mb-2">Skyheights Academy</p>
+                  <p className="mb-2">[Street Address]</p>
+                  <p className="mb-2">[Area/District]</p>
+                  <p>Lugbe, Abuja, Nigeria</p>
+                </>
+              )
+            },
+            {
+              icon: (
+                <svg
+                  className="w-8 h-8"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  />
+                </svg>
+              ),
+              title: "Call Us",
+              content: (
+                <>
+                  <p className="mb-2">
+                    <a
+                      href="tel:+234"
+                      className="hover:text-royal-blue transition-colors"
+                    >
+                      +234 xxx xxx xxxx
+                    </a>
+                  </p>
+                  <p className="mb-2">
+                    <a
+                      href="tel:+234"
+                      className="hover:text-royal-blue transition-colors"
+                    >
+                      +234 xxx xxx xxxx
+                    </a>
+                  </p>
+                  <p className="text-sm text-text-grey mt-3">
+                    Mon - Fri: 8:00 AM - 4:00 PM
+                  </p>
+                </>
+              )
+            },
+            {
+              icon: (
+                <svg
+                  className="w-8 h-8"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+              ),
+              title: "Email Us",
+              content: (
+                <>
+                  <p className="mb-2">
+                    <a
+                      href="mailto:info@skyheightsacademy.com"
+                      className="hover:text-royal-blue transition-colors"
+                    >
+                      info@skyheightsacademy.com
+                    </a>
+                  </p>
+                  <p className="mb-2">
+                    <a
+                      href="mailto:admissions@skyheightsacademy.com"
+                      className="hover:text-royal-blue transition-colors"
+                    >
+                      admissions@skyheightsacademy.com
+                    </a>
+                  </p>
+                  <p className="text-sm text-text-grey mt-3">
+                    We respond within 24 hours
+                  </p>
+                </>
+              )
+            }
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="bg-light-grey p-8 rounded-lg text-center hover:shadow-lg transition-shadow"
+            >
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-royal-blue rounded-full text-white mb-4">
+                {item.icon}
+              </div>
+              <h3 className="font-playfair font-bold text-2xl text-deep-navy mb-4">
+                {item.title}
+              </h3>
+              <div className="text-text-grey">{item.content}</div>
+            </div>
+          ))}
+        </div>
+      </SectionContainer>
+
+      {/* Contact Form and Map */}
+      <SectionContainer background="light">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Contact Form */}
+          <div>
+            <SectionTitle>Send Us a Message</SectionTitle>
+            <p className="text-text-grey mb-8">
+              Have a question or need more information? Fill out the form below
+              and our team will get back to you as soon as possible.
+            </p>
+            <ContactForm />
+          </div>
+
+          {/* Map and Office Hours */}
+          <div>
+            <SectionTitle>Find Us on the Map</SectionTitle>
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-8">
+              <div className="bg-heritage-brown/10 h-96 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="text-7xl mb-4">🗺️</div>
+                  <p className="text-deep-navy font-medium">Interactive Map</p>
+                  <p className="text-sm text-text-grey mt-2">
+                    Google Maps integration coming soon
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg shadow-lg p-8">
+              <h3 className="font-playfair font-bold text-2xl text-deep-navy mb-6">
+                Office Hours
+              </h3>
+              <div className="space-y-4">
+                {[
+                  { day: "Monday - Friday", time: "8:00 AM - 4:00 PM" },
+                  { day: "Saturday", time: "9:00 AM - 1:00 PM" },
+                  { day: "Sunday", time: "Closed" }
+                ].map((schedule, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center justify-between py-3 border-b border-divider-grey last:border-0"
+                  >
+                    <span className="font-medium text-deep-navy">
+                      {schedule.day}
+                    </span>
+                    <span className="text-text-grey">{schedule.time}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 p-4 bg-royal-blue/10 rounded-lg">
+                <p className="text-sm text-deep-navy">
+                  <strong>Note:</strong> Visiting hours may vary during holidays
+                  and school breaks. Please call ahead to confirm availability.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </SectionContainer>
+
+      {/* Department Contacts */}
+      <SectionContainer background="white">
+        <SectionTitle
+          centered
+          subtitle="Reach out to specific departments for specialized assistance"
+        >
+          Department Contacts
+        </SectionTitle>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          {[
+            {
+              department: "Admissions Office",
+              email: "admissions@skyheightsacademy.com",
+              phone: "+234 xxx xxx xxxx",
+              icon: "📋"
+            },
+            {
+              department: "Academic Affairs",
+              email: "academics@skyheightsacademy.com",
+              phone: "+234 xxx xxx xxxx",
+              icon: "📚"
+            },
+            {
+              department: "Finance & Accounts",
+              email: "finance@skyheightsacademy.com",
+              phone: "+234 xxx xxx xxxx",
+              icon: "💰"
+            },
+            {
+              department: "General Enquiries",
+              email: "info@skyheightsacademy.com",
+              phone: "+234 xxx xxx xxxx",
+              icon: "ℹ️"
+            }
+          ].map((dept, index) => (
+            <div
+              key={index}
+              className="bg-light-grey p-6 rounded-lg text-center hover:shadow-md transition-shadow"
+            >
+              <div className="text-5xl mb-3">{dept.icon}</div>
+              <h4 className="font-playfair font-bold text-lg text-deep-navy mb-3">
+                {dept.department}
+              </h4>
+              <div className="space-y-2 text-sm">
+                <a
+                  href={`mailto:${dept.email}`}
+                  className="block text-royal-blue hover:underline"
+                >
+                  {dept.email}
+                </a>
+                <a
+                  href={`tel:${dept.phone.replace(/\s/g, "")}`}
+                  className="block text-text-grey hover:text-royal-blue"
+                >
+                  {dept.phone}
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </SectionContainer>
+
+      {/* FAQ Quick Links */}
+      <SectionContainer background="cream">
+        <SectionTitle centered>Quick Help</SectionTitle>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {[
+            {
+              question: "How do I apply?",
+              answer:
+                "Visit our Admissions page for the complete application process and requirements.",
+              link: "/admissions"
+            },
+            {
+              question: "What are your fees?",
+              answer:
+                "Contact our Finance Office for detailed fee structure and payment plans.",
+              link: "mailto:finance@skyheightsacademy.com"
+            },
+            {
+              question: "Can I schedule a tour?",
+              answer:
+                "Yes! Use the contact form above or call us to schedule a campus visit.",
+              link: "#"
+            },
+            {
+              question: "What curriculum do you offer?",
+              answer:
+                "We offer a blend of Nigerian, British, and Montessori curriculum.",
+              link: "/academics"
+            },
+            {
+              question: "Do you have transportation?",
+              answer:
+                "Yes, we provide safe school bus services covering major areas in Abuja.",
+              link: "#"
+            },
+            {
+              question: "What are your class sizes?",
+              answer:
+                "We maintain small class sizes to ensure personalized attention for each student.",
+              link: "#"
+            }
+          ].map((item, index) => (
+            <div key={index} className="bg-white p-6 rounded-lg shadow-md">
+              <h4 className="font-playfair font-bold text-lg text-deep-navy mb-2">
+                {item.question}
+              </h4>
+              <p className="text-text-grey text-sm mb-3">{item.answer}</p>
+              <a
+                href={item.link}
+                className="text-royal-blue font-medium text-sm hover:underline flex items-center"
+              >
+                Learn More
+                <svg
+                  className="w-4 h-4 ml-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </a>
+            </div>
+          ))}
+        </div>
+      </SectionContainer>
+
+      {/* Social Media */}
+      <SectionContainer background="white">
+        <div className="text-center max-w-3xl mx-auto">
+          <SectionTitle centered>Connect With Us on Social Media</SectionTitle>
+          <p className="text-text-grey mb-8">
+            Follow us on social media for daily updates, photos, announcements,
+            and school activities.
+          </p>
+          <div className="flex justify-center space-x-6">
+            {[
+              {
+                name: "Facebook",
+                icon: "M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+              },
+              {
+                name: "Twitter",
+                icon: "M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
+              },
+              {
+                name: "Instagram",
+                icon: "M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"
+              }
+            ].map((social, index) => (
+              <a
+                key={index}
+                href="#"
+                className="w-12 h-12 bg-heritage-brown hover:bg-royal-blue rounded-full flex items-center justify-center text-white transition-colors"
+                aria-label={social.name}
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d={social.icon} />
+                </svg>
+              </a>
+            ))}
+          </div>
+        </div>
+      </SectionContainer>
+
+      {/* Emergency Contact */}
+      <SectionContainer background="light">
+        <div className="max-w-3xl mx-auto bg-red-50 border-l-4 border-red-500 p-6 rounded-lg">
+          <div className="flex items-start">
+            <svg
+              className="w-6 h-6 text-red-500 mr-3 flex-shrink-0 mt-1"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                clipRule="evenodd"
+              />
+            </svg>
+            <div>
+              <h4 className="font-playfair font-bold text-red-900 mb-2">
+                Emergency Contact
+              </h4>
+              <p className="text-red-800 text-sm mb-2">
+                For urgent matters related to student safety or emergencies
+                during school hours:
+              </p>
+              <p className="text-red-900 font-bold text-lg">
+                +234 xxx xxx xxxx
+              </p>
+              <p className="text-red-700 text-sm mt-2">
+                Available 24/7 for emergencies only
+              </p>
+            </div>
+          </div>
+        </div>
+      </SectionContainer>
+    </>
+  );
+}

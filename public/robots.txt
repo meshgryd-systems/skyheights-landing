@@ -1,0 +1,13 @@
+# Robots.txt for Skyheights Academy
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.skyheightsacademy.com/sitemap.xml
+
+# Crawl-delay (optional, for slower crawling)
+# Crawl-delay: 10
+
+# Disallow admin or private areas (if any)
+# Disallow: /admin/
+# Disallow: /private/
