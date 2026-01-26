@@ -37,7 +37,7 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
 
       - name: Install dependencies
-        run: npm ci --prefer-offline --no-audit
+        run: pnpm i --prefer-offline --no-audit
 
       - name: Setup environment
         run: |
