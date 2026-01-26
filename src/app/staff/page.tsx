@@ -14,10 +14,10 @@ function computeStaffProperties(staff: StaffMember): StaffMemberWithComputed {
   const category =
     staff.metadata?.category ||
     (staff.position?.toLowerCase().includes("principal") ||
-    staff.position?.toLowerCase().includes("head")
+      staff.position?.toLowerCase().includes("head")
       ? "leadership"
       : staff.position?.toLowerCase().includes("teacher") ||
-          staff.position?.toLowerCase().includes("lecturer")
+        staff.position?.toLowerCase().includes("lecturer")
         ? "teaching"
         : "support");
   const department = staff.metadata?.department;
@@ -115,61 +115,62 @@ export default function StaffPage() {
                 <Link
                   key={staff.id}
                   href={`/staff/${getStaffSlug(staff)}`}
-                    className="bg-light-grey rounded-[14px] p-6 text-center hover:shadow-lg transition-shadow duration-300 cursor-pointer block"
-                    style={{ boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.05)" }}
-                  >
-                    {staff.photo?.url ? (
-                      <div className="w-24 h-24 bg-royal-blue rounded-full flex items-center justify-center mx-auto mb-4 overflow-hidden">
-                        <Image
-                          src={staff.photo.url}
-                          alt={staff.fullName}
-                          width={96}
-                          height={96}
-                          className="object-cover w-full h-full"
+                  className="bg-light-grey rounded-[14px] p-6 text-center hover:shadow-lg transition-shadow duration-300 cursor-pointer block"
+                  style={{ boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.05)" }}
+                >
+                  {staff.photo?.url ? (
+                    <div className="w-24 h-24 bg-royal-blue rounded-full flex items-center justify-center mx-auto mb-4 overflow-hidden">
+                      <Image
+                        src={staff.photo.url}
+                        alt={staff.fullName}
+                        width={96}
+                        height={96}
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-24 h-24 bg-royal-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                      <svg
+                        className="w-12 h-12 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                         />
-                      </div>
-                    ) : (
-                      <div className="w-24 h-24 bg-royal-blue rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg
-                          className="w-12 h-12 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                          />
-                        </svg>
-                      </div>
-                    )}
-                    <h4 className="font-playfair font-bold text-xl text-deep-navy mb-2 hover:text-heritage-brown transition-colors">
-                      {staff.fullName}
-                    </h4>
-                    <p className="text-heritage-brown font-semibold text-sm mb-2">
-                      {staff.position}
+                      </svg>
+                    </div>
+                  )}
+                  <h4 className="font-playfair font-bold text-xl text-deep-navy mb-2 hover:text-heritage-brown transition-colors">
+                    {staff.fullName}
+                  </h4>
+                  <p className="text-heritage-brown font-semibold text-sm mb-2">
+                    {staff.position}
+                  </p>
+                  {staff.metadata?.qualifications && (
+                    <p className="text-text-grey text-xs mb-1">
+                      {staff.metadata.qualifications}
                     </p>
-                    {staff.metadata?.qualifications && (
-                      <p className="text-text-grey text-xs mb-1">
-                        {staff.metadata.qualifications}
-                      </p>
-                    )}
-                    {staff.metadata?.experience && (
-                      <p className="text-text-grey text-xs mb-3">
-                        {staff.metadata.experience} experience
-                      </p>
-                    )}
-                    {staff.bio && (
-                      <p className="text-text-grey text-sm leading-relaxed">
-                        {staff.bio.substring(0, 150)}
-                        {staff.bio.length > 150 ? "..." : ""}
-                      </p>
-                    )}
-                  </Link>
+                  )}
+                  {staff.metadata?.experience && (
+                    <p className="text-text-grey text-xs mb-3">
+                      {staff.metadata.experience} experience
+                    </p>
+                  )}
+                  {staff.bio && (
+                    <p className="text-text-grey text-sm leading-relaxed">
+                      {staff.bio.substring(0, 150)}
+                      {staff.bio.length > 150 ? "..." : ""}
+                    </p>
+                  )}
+                </Link>
               ))}
-          </div>
+            </div>
+          )}
         </div>
       </SectionContainer>
 
@@ -197,53 +198,53 @@ export default function StaffPage() {
                   <Link
                     key={staff.id}
                     href={`/staff/${getStaffSlug(staff)}`}
-                      className="bg-white rounded-[10px] p-6 hover:shadow-lg transition-shadow duration-300 cursor-pointer block"
-                      style={{ boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.05)" }}
-                    >
-                      {staff.photo?.url ? (
-                        <div className="w-16 h-16 bg-heritage-brown rounded-full flex items-center justify-center mx-auto mb-4 overflow-hidden">
-                          <Image
-                            src={staff.photo.url}
-                            alt={staff.fullName}
-                            width={64}
-                            height={64}
-                            className="object-cover w-full h-full"
+                    className="bg-white rounded-[10px] p-6 hover:shadow-lg transition-shadow duration-300 cursor-pointer block"
+                    style={{ boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.05)" }}
+                  >
+                    {staff.photo?.url ? (
+                      <div className="w-16 h-16 bg-heritage-brown rounded-full flex items-center justify-center mx-auto mb-4 overflow-hidden">
+                        <Image
+                          src={staff.photo.url}
+                          alt={staff.fullName}
+                          width={64}
+                          height={64}
+                          className="object-cover w-full h-full"
+                        />
+                      </div>
+                    ) : (
+                      <div className="w-16 h-16 bg-heritage-brown rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg
+                          className="w-8 h-8 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
                           />
-                        </div>
-                      ) : (
-                        <div className="w-16 h-16 bg-heritage-brown rounded-full flex items-center justify-center mx-auto mb-4">
-                          <svg
-                            className="w-8 h-8 text-white"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                            />
-                          </svg>
-                        </div>
-                      )}
-                      <h4 className="font-playfair font-bold text-lg text-deep-navy mb-2 text-center hover:text-heritage-brown transition-colors">
-                        {staff.fullName}
-                      </h4>
-                      <p className="text-heritage-brown font-semibold text-sm mb-2 text-center">
-                        {staff.position}
+                        </svg>
+                      </div>
+                    )}
+                    <h4 className="font-playfair font-bold text-lg text-deep-navy mb-2 text-center hover:text-heritage-brown transition-colors">
+                      {staff.fullName}
+                    </h4>
+                    <p className="text-heritage-brown font-semibold text-sm mb-2 text-center">
+                      {staff.position}
+                    </p>
+                    {staff.metadata?.qualifications && (
+                      <p className="text-text-grey text-xs mb-2 text-center">
+                        {staff.metadata.qualifications}
                       </p>
-                      {staff.metadata?.qualifications && (
-                        <p className="text-text-grey text-xs mb-2 text-center">
-                          {staff.metadata.qualifications}
-                        </p>
-                      )}
-                      {staff.metadata?.specialization && (
-                        <p className="text-text-grey text-xs text-center">
-                          {staff.metadata.specialization}
-                        </p>
-                      )}
-                    </Link>
+                    )}
+                    {staff.metadata?.specialization && (
+                      <p className="text-text-grey text-xs text-center">
+                        {staff.metadata.specialization}
+                      </p>
+                    )}
+                  </Link>
                 ))}
               </div>
             </div>
@@ -269,49 +270,49 @@ export default function StaffPage() {
               <Link
                 key={staff.id}
                 href={`/staff/${getStaffSlug(staff)}`}
-                  className="bg-light-grey rounded-[10px] p-6 text-center hover:shadow-lg transition-shadow duration-300 cursor-pointer block"
-                  style={{ boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.05)" }}
-                >
-                  {staff.photo?.url ? (
-                    <div className="w-16 h-16 bg-royal-blue rounded-full flex items-center justify-center mx-auto mb-4 overflow-hidden">
-                      <Image
-                        src={staff.photo.url}
-                        alt={staff.fullName}
-                        width={64}
-                        height={64}
-                        className="object-cover w-full h-full"
+                className="bg-light-grey rounded-[10px] p-6 text-center hover:shadow-lg transition-shadow duration-300 cursor-pointer block"
+                style={{ boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.05)" }}
+              >
+                {staff.photo?.url ? (
+                  <div className="w-16 h-16 bg-royal-blue rounded-full flex items-center justify-center mx-auto mb-4 overflow-hidden">
+                    <Image
+                      src={staff.photo.url}
+                      alt={staff.fullName}
+                      width={64}
+                      height={64}
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-16 h-16 bg-royal-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg
+                      className="w-8 h-8 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                       />
-                    </div>
-                  ) : (
-                    <div className="w-16 h-16 bg-royal-blue rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg
-                        className="w-8 h-8 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                        />
-                      </svg>
-                    </div>
-                  )}
-                  <h4 className="font-playfair font-bold text-lg text-deep-navy mb-2 hover:text-heritage-brown transition-colors">
-                    {staff.fullName}
-                  </h4>
-                  <p className="text-heritage-brown font-semibold text-sm mb-3">
-                    {staff.position}
+                    </svg>
+                  </div>
+                )}
+                <h4 className="font-playfair font-bold text-lg text-deep-navy mb-2 hover:text-heritage-brown transition-colors">
+                  {staff.fullName}
+                </h4>
+                <p className="text-heritage-brown font-semibold text-sm mb-3">
+                  {staff.position}
+                </p>
+                {staff.bio && (
+                  <p className="text-text-grey text-sm leading-relaxed">
+                    {staff.bio.substring(0, 100)}
+                    {staff.bio.length > 100 ? "..." : ""}
                   </p>
-                  {staff.bio && (
-                    <p className="text-text-grey text-sm leading-relaxed">
-                      {staff.bio.substring(0, 100)}
-                      {staff.bio.length > 100 ? "..." : ""}
-                    </p>
-                  )}
-                </Link>
+                )}
+              </Link>
             ))}
           </div>
         </div>
