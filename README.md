@@ -169,7 +169,7 @@ Update color values in `app/globals.css` under the `:root` section
 
 ## 📞 Support
 For technical support or questions:
-- Email: info@skyheightsacademy.com
+- Email: info@skyheightsacademy.ng
 - Phone: +234 xxx xxx xxxx
 
 ## 🚀 Deployment
