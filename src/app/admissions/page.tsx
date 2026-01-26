@@ -1,7 +1,7 @@
 import SectionContainer from "../../components/SectionContainer";
 import SectionHeader from "../../components/SectionHeader";
 import Button from "../../components/Button";
-import ContactForm from "../../components/ContactForm";
+import ContactForm from "../../components/ContactFormWrapper";
 import Image from "next/image";
 
 export const metadata = {

@@ -1,6 +1,6 @@
 import SectionContainer from "../../components/SectionContainer";
 import SectionTitle from "../../components/SectionTitle";
-import ContactForm from "../../components/ContactForm";
+import ContactForm from "../../components/ContactFormWrapper";
 import {
   HiBookOpen,
   HiCurrencyDollar,
