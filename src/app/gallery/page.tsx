@@ -149,11 +149,11 @@ export default function GalleryPage() {
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {filteredItems.map((item) => (
                 <div key={item.id} className="group cursor-pointer">
                   <div
-                    className="relative bg-light-grey rounded-[14px] overflow-hidden"
+                    className="relative bg-light-grey rounded overflow-hidden"
                     style={{ aspectRatio: "4/3" }}
                   >
                     {/* Actual image or placeholder */}
@@ -167,23 +167,7 @@ export default function GalleryPage() {
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
-                        <div className="text-center p-6">
-                          <div className="w-16 h-16 mx-auto mb-4 text-heritage-brown flex items-center justify-center">
-                            {item.category === "classrooms" && (
-                              <HiBookOpen className="w-16 h-16" />
-                            )}
-                            {item.category === "facilities" && (
-                              <HiBuildingOffice className="w-16 h-16" />
-                            )}
-                            {item.category === "events" && (
-                              <HiCalendar className="w-16 h-16" />
-                            )}
-                            {item.category === "student-life" && (
-                              <HiUserGroup className="w-16 h-16" />
-                            )}
-                          </div>
-                          <p className="text-text-grey text-sm">{item.title}</p>
-                        </div>
+                        <p className="text-text-grey text-sm">{item.title}</p>
                       </div>
                     )}
                     {/* Hover overlay */}
@@ -204,7 +188,7 @@ export default function GalleryPage() {
                     </div>
                   </div>
                   {/* SHORT CAPTION ONLY - Phase 8: No emojis, no slang */}
-                  <p className="text-sm text-text-grey mt-3 text-center">
+                  <p className="text-sm text-text-grey text-start">
                     {item.description || item.title}
                   </p>
                 </div>
