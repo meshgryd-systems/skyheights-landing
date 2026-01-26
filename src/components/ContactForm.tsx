@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Button from './Button';
 import { useSubmitContactMutation } from '@/store/services';
-import { SuccessNotification } from '@/utils/helpers';
+import { SuccessNotification, ErrorNotification } from '@/utils/helpers';
 
 interface FormData {
   name: string;
@@ -39,15 +39,25 @@ export default function ContactForm() {
     setSubmitStatus('idle');
 
     try {
-      const result = await submitContact({
+      await submitContact({
         email: formData.email,
         name: formData.name || undefined,
         phone: formData.phone || undefined,
         subject: formData.subject || undefined,
         message: formData.message
       }).unwrap();
+
       SuccessNotification('Contact form submitted successfully, we will get back to you shortly.');
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      setSubmitStatus('success');
+      setTimeout(() => setSubmitStatus('idle'), 5000);
     } catch (error: any) {
+      console.error('Contact form error:', error);
+      setSubmitStatus('error');
+      const errorMsg = error?.data?.message || 'An error occurred while submitting your message. Please try again.';
+      setErrorMessage(errorMsg);
+      ErrorNotification(errorMsg);
+      setTimeout(() => setSubmitStatus('idle'), 5000);
     }
   };
 

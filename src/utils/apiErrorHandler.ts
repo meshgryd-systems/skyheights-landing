@@ -62,13 +62,14 @@ export const errorMiddleware: Middleware =
         if (isRejectedWithValue(action)) {
           if (
             action.payload.status === 401 &&
-            !location.pathname.includes("/auth/")
+            typeof window !== 'undefined' &&
+            !window.location.pathname.includes("/auth/")
           ) {
             apiSlice.util.resetApiState();
             return next(action);
           }
           const errorData =
-            action.payload.data.error || action.payload.data.data.error;
+            action.payload.data?.error || action.payload.data?.data?.error;
 
           if (errorData?.details) {
             const validationErrors = extractValidationErrors(errorData?.details);
