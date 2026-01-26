@@ -32,7 +32,7 @@ export const API_ROUTES = {
       CANCEL: "/public/announcements/:id/cancel"
     },
     CONTACT: {
-      SUBMIT: "/contact"
+      SUBMIT: "/public/contact"
     }
   },
 };

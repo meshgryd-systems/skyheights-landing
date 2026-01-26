@@ -187,51 +187,52 @@ export default function ContactPage() {
           <div>
             <SectionTitle>Find Us on the Map</SectionTitle>
             <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-8">
-              <div className="bg-heritage-brown/10 h-96 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-7xl mb-4">🗺️</div>
-                  <p className="text-deep-navy font-medium">Interactive Map</p>
-                  <p className="text-sm text-text-grey mt-2">
-                    Google Maps integration coming soon
-                  </p>
-                </div>
-              </div>
+              <iframe
+                className="w-full h-96"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.30103774098!2d7.359106!3d8.955869!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOC45NTU4NjkgNy4zNTkxMDY!5e0!3m2!1sen!2sng!4v1737900000000!5m2!1sen!2sng"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
+          </div>
 
-            <div className="bg-white rounded-lg shadow-lg p-8">
-              <h3 className="font-playfair font-bold text-2xl text-deep-navy mb-6">
-                Office Hours
-              </h3>
-              <div className="space-y-4">
-                {[
-                  { day: "Monday - Friday", time: "8:00 AM - 4:00 PM" },
-                  { day: "Saturday", time: "9:00 AM - 1:00 PM" },
-                  { day: "Sunday", time: "Closed" }
-                ].map((schedule, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center justify-between py-3 border-b border-divider-grey last:border-0"
-                  >
-                    <span className="font-medium text-deep-navy">
-                      {schedule.day}
-                    </span>
-                    <span className="text-text-grey">{schedule.time}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 p-4 bg-royal-blue/10 rounded-lg">
-                <p className="text-sm text-deep-navy">
-                  <strong>Note:</strong> Visiting hours may vary during holidays
-                  and school breaks. Please call ahead to confirm availability.
-                </p>
-              </div>
+          <div className="bg-white rounded-lg shadow-lg p-8">
+            <h3 className="font-playfair font-bold text-2xl text-deep-navy mb-6">
+              Office Hours
+            </h3>
+            <div className="space-y-4">
+              {[
+                { day: "Monday - Friday", time: "8:00 AM - 4:00 PM" },
+                { day: "Saturday", time: "9:00 AM - 1:00 PM" },
+                { day: "Sunday", time: "Closed" }
+              ].map((schedule, index) => (
+                <div
+                  key={index}
+                  className="flex items-center justify-between py-3 border-b border-divider-grey last:border-0"
+                >
+                  <span className="font-medium text-deep-navy">
+                    {schedule.day}
+                  </span>
+                  <span className="text-text-grey">{schedule.time}</span>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 p-4 bg-royal-blue/10 rounded-lg">
+              <p className="text-sm text-deep-navy">
+                <strong>Note:</strong> Visiting hours may vary during holidays
+                and school breaks. Please call ahead to confirm availability.
+              </p>
             </div>
           </div>
         </div>
-      </SectionContainer>
+      </SectionContainer >
 
       {/* Department Contacts */}
-      <SectionContainer background="white">
+      <SectionContainer background="white" >
         <SectionTitle
           centered
           subtitle="Reach out to specific departments for specialized assistance"
@@ -295,10 +296,10 @@ export default function ContactPage() {
             );
           })}
         </div>
-      </SectionContainer>
+      </SectionContainer >
 
       {/* FAQ Quick Links */}
-      <SectionContainer background="cream">
+      <SectionContainer background="cream" >
         <SectionTitle centered>Quick Help</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {[
@@ -366,10 +367,10 @@ export default function ContactPage() {
             </div>
           ))}
         </div>
-      </SectionContainer>
+      </SectionContainer >
 
       {/* Social Media */}
-      <SectionContainer background="white">
+      <SectionContainer background="white" >
         <div className="text-center max-w-3xl mx-auto">
           <SectionTitle centered className="mb-2">
             Connect With Us on Social Media
@@ -410,7 +411,7 @@ export default function ContactPage() {
             ))}
           </div>
         </div>
-      </SectionContainer>
+      </SectionContainer   >
     </>
   );
 }

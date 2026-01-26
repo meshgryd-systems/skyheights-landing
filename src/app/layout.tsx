@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import SchoolSchema from "../components/SchoolSchema";
 import StoreProvider from "@/providers/StoreProvider";
+import { Toaster } from "sonner";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -47,6 +48,7 @@ export default function RootLayout({
           <Header />
           <main>{children}</main>
           <Footer />
+          <Toaster position="top-center" richColors closeButton />
         </StoreProvider>
       </body>
     </html>

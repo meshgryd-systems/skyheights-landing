@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Button from './Button';
 import { useSubmitContactMutation } from '@/store/services';
+import { SuccessNotification } from '@/utils/helpers';
 
 interface FormData {
   name: string;
@@ -29,7 +30,6 @@ export default function ContactForm() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    // Clear error message when user starts typing
     if (errorMessage) setErrorMessage('');
   };
 
@@ -46,29 +46,8 @@ export default function ContactForm() {
         subject: formData.subject || undefined,
         message: formData.message
       }).unwrap();
-
-      if (result.success) {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-        setTimeout(() => setSubmitStatus('idle'), 5000);
-      } else {
-        setSubmitStatus('error');
-        setErrorMessage(result.message || 'Failed to send message. Please try again.');
-        setTimeout(() => setSubmitStatus('idle'), 5000);
-      }
+      SuccessNotification('Contact form submitted successfully, we will get back to you shortly.');
     } catch (error: any) {
-      console.error('Error submitting contact form:', error);
-      setSubmitStatus('error');
-
-      if (error?.data?.message) {
-        setErrorMessage(error.data.message);
-      } else if (error?.data?.errors && Array.isArray(error.data.errors)) {
-        setErrorMessage(error.data.errors.join(', '));
-      } else {
-        setErrorMessage('An error occurred while submitting your message. Please try again.');
-      }
-
-      setTimeout(() => setSubmitStatus('idle'), 5000);
     }
   };
 
