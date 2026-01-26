@@ -8,11 +8,9 @@ import SectionContainer from "../../components/SectionContainer";
 import SectionHeader from "../../components/SectionHeader";
 import Button from "../../components/Button";
 
-// Helper function to compute staff properties
 function computeStaffProperties(staff: StaffMember): StaffMemberWithComputed {
   const fullName = `${staff.firstName} ${staff.lastName}`.trim();
 
-  // Map STAFF_TYPE to category for display
   const getCategoryFromType = (type?: STAFF_TYPE): "leadership" | "teaching" | "support" => {
     if (!type) return "support";
     switch (type) {
@@ -47,7 +45,6 @@ function computeStaffProperties(staff: StaffMember): StaffMemberWithComputed {
   };
 }
 
-// Helper to get slug from staff member (use backend slug if available)
 function getStaffSlug(staff: StaffMember): string {
   return staff.slug || `${staff.firstName}-${staff.lastName}`
     .toLowerCase()
@@ -63,7 +60,6 @@ export default function StaffPage() {
 
   const allStaff = (staffData?.data || []).map(computeStaffProperties);
 
-  // Organize staff by type/category and department
   const leadershipTeam = allStaff.filter(
     (staff) =>
       staff.type === STAFF_TYPE.LEADERSHIP || staff.category === "leadership"
@@ -80,7 +76,6 @@ export default function StaffPage() {
       staff.category === "support"
   );
 
-  // Group teaching staff by department
   const departments = Array.from(
     new Set(teachingStaff.map((staff) => staff.department).filter(Boolean))
   );
@@ -94,25 +89,15 @@ export default function StaffPage() {
   return (
     <>
       {/* STAFF HERO - Phase 6: Calm academic imagery, institutional credibility */}
-      <section className="relative bg-[#eee5b5] text-white py-20 md:py-28 overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <Image
-            src="/pics/14885.jpg"
-            alt="Skyheights Academy Staff"
-            fill
-            className="object-cover"
-          />
-        </div>
-
+      <section style={{ backgroundImage: "url('/pics/14885.jpg')", backgroundSize: "cover", backgroundPosition: "center" }} className="relative bg-[#eee5b5] text-white py-20 md:py-28 overflow-hidden">
         {/* Overlay for contrast */}
         <div className="absolute inset-0 bg-black/50"></div>
 
         <div className="container relative z-10">
-          <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight">
+          <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight text-white!">
             Our Staff & Leadership Team
           </h1>
-          <p className="text-lg font-light md:text-xl text-cream/95 max-w-4xl leading-relaxed">
+          <p className="text-lg font-light md:text-xl text-white/95! max-w-4xl leading-relaxed">
             Meet the experienced and dedicated educators who make Skyheights
             Academy a place of excellence, growth, and achievement.
           </p>

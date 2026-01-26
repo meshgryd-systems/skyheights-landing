@@ -1,8 +1,6 @@
 import SectionContainer from "../../components/SectionContainer";
 import SectionTitle from "../../components/SectionTitle";
 import ContactForm from "../../components/ContactForm";
-import Button from "../../components/Button";
-import Image from "next/image";
 import {
   HiBookOpen,
   HiCurrencyDollar,
@@ -20,25 +18,16 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-[#eee5b5] text-white py-20 md:py-28 overflow-hidden">
+      <section style={{ backgroundImage: "url('/pics/14940.jpg')", backgroundSize: "cover", backgroundPositionY: "-150px" }} className="relative bg-[#eee5b5] text-white py-20 md:py-28 overflow-hidden">
         {/* Background Image */}
-        <div className="absolute inset-0">
-          <Image
-            src="/pics/14940.jpg"
-            alt="Skyheights Academy Contact"
-            fill
-            className="object-cover"
-          />
-        </div>
-        
         {/* Overlay for contrast */}
-        <div className="absolute inset-0 bg-black/50"></div>
-        
+        <div className="absolute inset-0 bg-black/60"></div>
+
         <div className="container relative z-10">
-          <h1 className="font-playfair font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
+          <h1 className="font-playfair font-bold text-4xl md:text-5xl lg:text-6xl mb-2 !text-white drop-shadow-lg">
             Contact Us
           </h1>
-          <p className="text-lg font-light md:text-xl text-cream/90 max-w-3xl">
+          <p className="text-lg font-light md:text-xl !text-white/95 max-w-3xl drop-shadow-md">
             We&apos;re here to answer your questions and help you on your
             journey with Skyheights Academy
           </p>
@@ -75,9 +64,10 @@ export default function ContactPage() {
               content: (
                 <>
                   <p className="mb-2">Skyheights Academy</p>
-                  <p className="mb-2">[Street Address]</p>
-                  <p className="mb-2">[Area/District]</p>
-                  <p>Lugbe, Abuja, Nigeria</p>
+                  <p className="mb-2">Phase 4, Palmheights Homes</p>
+                  <p className="mb-2">Queen Amudat Giwa Avenue, Oxford Street</p>
+                  <p className="mb-2">off V.O.N Road</p>
+                  <p>Lugbe 900107, Federal Capital Territory</p>
                 </>
               )
             },
@@ -143,18 +133,18 @@ export default function ContactPage() {
                 <>
                   <p className="mb-2">
                     <a
-                      href="mailto:info@skyheightsacademy.com"
+                      href="mailto:info@skyheightsacademy.ng"
                       className="hover:text-royal-blue transition-colors"
                     >
-                      info@skyheightsacademy.com
+                      info@skyheightsacademy.ng
                     </a>
                   </p>
                   <p className="mb-2">
                     <a
-                      href="mailto:admissions@skyheightsacademy.com"
+                      href="mailto:admissions@skyheightsacademy.ng"
                       className="hover:text-royal-blue transition-colors"
                     >
-                      admissions@skyheightsacademy.com
+                      admissions@skyheightsacademy.ng
                     </a>
                   </p>
                   <p className="text-sm text-text-grey mt-3">
@@ -252,25 +242,25 @@ export default function ContactPage() {
           {[
             {
               department: "Admissions Office",
-              email: "admissions@skyheightsacademy.com",
+              email: "admissions@skyheightsacademy.ng",
               phone: "+234 xxx xxx xxxx",
               icon: HiClipboardDocumentList
             },
             {
               department: "Academic Affairs",
-              email: "academics@skyheightsacademy.com",
+              email: "academics@skyheightsacademy.ng",
               phone: "+234 xxx xxx xxxx",
               icon: HiBookOpen
             },
             {
               department: "Finance & Accounts",
-              email: "finance@skyheightsacademy.com",
+              email: "finance@skyheightsacademy.ng",
               phone: "+234 xxx xxx xxxx",
               icon: HiCurrencyDollar
             },
             {
               department: "General Enquiries",
-              email: "info@skyheightsacademy.com",
+              email: "info@skyheightsacademy.ng",
               phone: "+234 xxx xxx xxxx",
               icon: HiInformationCircle
             }
@@ -322,7 +312,7 @@ export default function ContactPage() {
               question: "What are your fees?",
               answer:
                 "Contact our Finance Office for detailed fee structure and payment plans.",
-              link: "mailto:finance@skyheightsacademy.com"
+              link: "mailto:finance@skyheightsacademy.ng"
             },
             {
               question: "Can I schedule a tour?",

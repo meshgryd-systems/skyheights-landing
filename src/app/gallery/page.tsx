@@ -77,10 +77,10 @@ export default function GalleryPage() {
         <div className="absolute inset-0 bg-black/50"></div>
 
         <div className="container relative z-10">
-          <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight">
+          <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight text-white!">
             Gallery
           </h1>
-          <p className="text-lg font-light md:text-xl text-cream/95 max-w-4xl leading-relaxed">
+          <p className="text-lg font-light md:text-xl text-white/95! max-w-4xl leading-relaxed">
             A glimpse into life, learning, and growth at Skyheights Academy.
           </p>
         </div>

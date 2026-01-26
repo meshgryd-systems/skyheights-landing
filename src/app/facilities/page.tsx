@@ -13,25 +13,15 @@ export default function FacilitiesPage() {
   return (
     <>
       {/* HERO - Phase 7: Answer silent parent concerns */}
-      <section className="relative bg-royal-blue text-white py-20 md:py-28 overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <Image
-            src="/pics/14910.jpg"
-            alt="Skyheights Academy Facilities"
-            fill
-            className="object-cover"
-          />
-        </div>
-        
+      <section style={{ backgroundImage: "url('/pics/14910.jpg')", backgroundSize: "cover", backgroundPosition: "top" }} className="relative bg-royal-blue text-white py-20 md:py-28 overflow-hidden">
         {/* Overlay for contrast */}
         <div className="absolute inset-0 bg-black/50"></div>
-        
+
         <div className="container relative z-10">
-          <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight">
+          <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight text-white!">
             Our Facilities & Safety Standards
           </h1>
-          <p className="text-lg md:text-xl text-white/95 max-w-4xl leading-relaxed">
+          <p className="text-lg md:text-xl text-white/95! max-w-4xl leading-relaxed">
             Skyheights Academy provides a secure, well-equipped, and
             student-friendly environment designed to support effective learning
             and holistic development.

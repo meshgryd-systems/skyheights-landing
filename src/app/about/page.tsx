@@ -13,25 +13,16 @@ export default function AboutPage() {
   return (
     <>
       {/* ABOUT HERO - Phase 6: Calm academic imagery, institutional credibility */}
-      <section className="relative bg-[#eee5b5] text-white py-20 md:py-28 overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <Image
-            src="/pics/14880.jpg"
-            alt="Skyheights Academy"
-            fill
-            className="object-cover"
-          />
-        </div>
-        
+      <section style={{ backgroundImage: "url('/pics/14880.jpg')", backgroundSize: "cover", backgroundPosition: "center" }} className="relative bg-[#eee5b5] text-white py-20 md:py-28 overflow-hidden">
+
         {/* Overlay for contrast */}
-        <div className="absolute inset-0 bg-black/50"></div>
-        
+        <div className="absolute inset-0 bg-black/30"></div>
+
         <div className="container relative z-10">
-          <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight">
+          <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight text-white!">
             About Skyheights Academy
           </h1>
-          <p className="text-lg font-light md:text-xl text-cream/95 max-w-4xl leading-relaxed">
+          <p className="text-lg font-light md:text-xl text-white/95! max-w-4xl leading-relaxed">
             A private educational institution committed to academic excellence,
             character development, and lifelong success.
           </p>

@@ -234,10 +234,10 @@ export default function Footer() {
                   />
                 </svg>
                 <a
-                  href="mailto:info@skyheightsacademy.com"
+                  href="mailto:info@skyheightsacademy.ng"
                   className="hover:text-royal-blue transition-colors"
                 >
-                  info@skyheightsacademy.com
+                  info@skyheightsacademy.ng
                 </a>
               </li>
               <li className="flex items-start">

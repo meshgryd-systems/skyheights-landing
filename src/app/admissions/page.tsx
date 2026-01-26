@@ -14,25 +14,16 @@ export default function AdmissionsPage() {
   return (
     <>
       {/* ADMISSIONS HERO SECTION - Phase 4: Reassure + guide, not pressure */}
-      <section className="relative bg-[#eee5b5] text-white py-20 md:py-28 overflow-hidden">
+      <section style={{ backgroundImage: "url('/pics/14902.jpg')", backgroundSize: "cover", backgroundPosition: "top" }} className="relative bg-[#eee5b5] text-white py-20 md:py-28 overflow-hidden">
         {/* Background Image */}
-        <div className="absolute inset-0">
-          <Image
-            src="/pics/14902.jpg"
-            alt="Skyheights Academy Admissions"
-            fill
-            className="object-cover"
-          />
-        </div>
-
         {/* Overlay for contrast */}
         <div className="absolute inset-0 bg-black/50"></div>
 
         <div className="container relative z-10">
-          <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight">
+          <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight text-white!">
             Admissions at Skyheights Academy
           </h1>
-          <p className="text-lg font-light md:text-xl text-cream/95 max-w-3xl leading-relaxed mb-10">
+          <p className="text-lg font-light md:text-xl text-white/95! max-w-3xl leading-relaxed mb-10">
             We welcome pupils into a structured, nurturing, and academically
             focused learning environment designed to help every child thrive.
           </p>

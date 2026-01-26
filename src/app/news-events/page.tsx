@@ -49,25 +49,16 @@ export default function NewsEventsPage() {
   return (
     <>
       {/* HERO - Phase 8: Show school is alive, structured, current */}
-      <section className="relative bg-[#eee5b5] text-white py-20 md:py-28 overflow-hidden">
+      <section style={{ backgroundImage: "url('/pics/14890.jpg')", backgroundSize: "cover", backgroundPositionY: "-150px" }} className="relative bg-[#eee5b5] text-white py-20 md:py-28 overflow-hidden">
         {/* Background Image */}
-        <div className="absolute inset-0">
-          <Image
-            src="/pics/14890.jpg"
-            alt="Skyheights Academy News & Events"
-            fill
-            className="object-cover"
-          />
-        </div>
-
         {/* Overlay for contrast */}
-        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute inset-0 bg-black/40"></div>
 
         <div className="container relative z-10">
-          <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight">
+          <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight text-white!">
             News & Events
           </h1>
-          <p className="text-lg font-light md:text-xl text-white/95 max-w-4xl leading-relaxed">
+          <p className="text-lg font-light md:text-xl text-white/95! max-w-4xl leading-relaxed">
             Stay informed about school updates, academic activities, and
             important notices.
           </p>

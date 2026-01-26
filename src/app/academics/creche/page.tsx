@@ -13,30 +13,21 @@ export default function CrechePage() {
   return (
     <>
       {/* CRECHE HERO - Phase 5: Reassure parents of care, safety, early development */}
-      <section className="relative bg-heritage-brown text-white py-20 md:py-28 overflow-hidden">
+      <section style={{ backgroundImage: "url('/pics/14920.jpg')", backgroundSize: "cover", backgroundPosition: "top" }} className="relative bg-heritage-brown text-white py-20 md:py-28 overflow-hidden">
         {/* Background Image */}
-        <div className="absolute inset-0">
-          <Image
-            src="/pics/14920.jpg"
-            alt="Skyheights Academy Creche"
-            fill
-            className="object-cover"
-          />
-        </div>
-        
         {/* Overlay for contrast */}
         <div className="absolute inset-0 bg-black/50"></div>
-        
+
         <div className="container relative z-10">
           <div className="inline-block px-4 py-2 bg-cream/20 rounded-full mb-4">
             <span className="text-cream text-sm font-medium">
               Ages 6 months - 2 years
             </span>
           </div>
-          <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight">
+          <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight text-white!">
             Creche Programme
           </h1>
-          <p className="text-lg font-light md:text-xl text-cream/95 max-w-4xl leading-relaxed">
+          <p className="text-lg font-light md:text-xl text-white/95! max-w-4xl leading-relaxed">
             Our Creche programme provides a warm, secure, and nurturing
             environment where children take their first steps into structured
             learning through guided play and care.

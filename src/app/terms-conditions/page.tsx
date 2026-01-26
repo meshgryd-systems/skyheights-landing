@@ -447,10 +447,10 @@ export default function TermsConditionsPage() {
                 <p>
                   Email:{" "}
                   <a
-                    href="mailto:info@skyheightsacademy.com"
+                    href="mailto:info@skyheightsacademy.ng"
                     className="text-royal-blue hover:underline"
                   >
-                    info@skyheightsacademy.com
+                    info@skyheightsacademy.ng
                   </a>
                 </p>
                 <p>Phone: +234 xxx xxx xxxx</p>

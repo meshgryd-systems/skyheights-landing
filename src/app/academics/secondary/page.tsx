@@ -19,30 +19,21 @@ export default function SecondaryPage() {
   return (
     <>
       {/* SECONDARY HERO - Phase 5: Prove academic depth & future readiness */}
-      <section className="relative bg-heritage-brown text-white py-20 md:py-28 overflow-hidden">
+      <section style={{ backgroundImage: "url('/pics/14935.jpg')", backgroundSize: "cover", backgroundPosition: "top" }} className="relative bg-heritage-brown text-white py-20 md:py-28 overflow-hidden">
         {/* Background Image */}
-        <div className="absolute inset-0">
-          <Image
-            src="/pics/14935.jpg"
-            alt="Skyheights Academy Secondary School"
-            fill
-            className="object-cover"
-          />
-        </div>
-        
         {/* Overlay for contrast */}
         <div className="absolute inset-0 bg-black/50"></div>
-        
+
         <div className="container relative z-10">
-          <div className="inline-block px-4 py-2 bg-cream/20 rounded-full mb-4">
-            <span className="text-cream text-sm font-medium">
+          <div className="inline-block px-4 py-2 bg-heritage-brown/20 rounded-full mb-4">
+            <span className="text-heritage-brown text-sm font-medium">
               Ages 12 - 17 years (JSS1 - SS3)
             </span>
           </div>
-          <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight">
+          <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight text-white!">
             Secondary School Programme
           </h1>
-          <p className="text-lg md:text-xl text-cream/95 max-w-4xl leading-relaxed">
+          <p className="text-lg md:text-xl text-white/95! max-w-4xl leading-relaxed">
             Our Secondary School programme prepares students for higher
             education and future careers through rigorous academics, discipline,
             and character development.

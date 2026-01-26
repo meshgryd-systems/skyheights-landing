@@ -22,20 +22,20 @@ export default function Home() {
         style={{ backgroundImage: "url('/pics/14872.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
       >
         {/* Overlay for contrast */}
-        <div className="absolute inset-0 bg-black/60 z-10"></div>
+        <div className="absolute inset-0 bg-black/40 z-10"></div>
 
         {/* Content */}
         <div className="relative container py-20 md:py-24 w-full z-20">
           <div className="max-w-4xl">
             {/* Hero Headline - Phase 3: 56-64px (3.5-4rem) */}
-            <h1 className="font-playfair font-bold text-[3.5rem] md:text-[4rem] mb-6 leading-tight animate-fade-in text-white drop-shadow-lg">
+            <h1 className="font-playfair font-bold text-[3.5rem] md:text-[4rem] mb-6 leading-tight animate-fade-in !text-white drop-shadow-lg">
               Nurturing Excellence.
               <br />
               Shaping Future Leaders.
             </h1>
 
             {/* Hero Subtext */}
-            <p className="text-lg md:text-xl lg:text-2xl text-white/95 mb-10 max-w-3xl leading-relaxed font-light drop-shadow-md">
+            <p className="text-lg md:text-xl lg:text-2xl !text-white/95 mb-10 max-w-3xl leading-relaxed font-light drop-shadow-md">
               Skyheights Academy is a private co-educational institution
               offering Nigerian, British, and Montessori curricula — committed
               to raising confident, disciplined, and well-rounded learners.

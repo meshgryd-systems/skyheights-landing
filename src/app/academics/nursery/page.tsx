@@ -14,30 +14,21 @@ export default function NurseryPage() {
   return (
     <>
       {/* NURSERY HERO - Phase 5: Show structure + gentle academics */}
-      <section className="relative bg-royal-blue text-white py-20 md:py-28 overflow-hidden">
+      <section style={{ backgroundImage: "url('/pics/14925.jpg')", backgroundSize: "cover", backgroundPosition: "top" }} className="relative bg-royal-blue text-white py-20 md:py-28 overflow-hidden">
         {/* Background Image */}
-        <div className="absolute inset-0">
-          <Image
-            src="/pics/14925.jpg"
-            alt="Skyheights Academy Nursery"
-            fill
-            className="object-cover"
-          />
-        </div>
-        
         {/* Overlay for contrast */}
         <div className="absolute inset-0 bg-black/50"></div>
-        
+
         <div className="container relative z-10">
-          <div className="inline-block px-4 py-2 bg-white/20 rounded-full mb-4">
-            <span className="text-white text-sm font-medium">
+          <div className="inline-block px-4 py-2 bg-royal-blue/20 rounded-full mb-4">
+            <span className="text-royal-blue text-sm font-medium">
               Ages 2 - 5 years
             </span>
           </div>
-          <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight">
+          <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight text-white!">
             Nursery Programme
           </h1>
-          <p className="text-lg md:text-xl text-white/95 max-w-4xl leading-relaxed">
+          <p className="text-lg md:text-xl text-white/95! max-w-4xl leading-relaxed">
             Our Nursery programme introduces foundational academic skills while
             nurturing curiosity, creativity, and confidence in young learners.
           </p>

@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://www.skyheightsacademy.com/sitemap.xml
+Sitemap: https://www.skyheightsacademy.ng/sitemap.xml
 
 # Crawl-delay (optional, for slower crawling)
 # Crawl-delay: 10

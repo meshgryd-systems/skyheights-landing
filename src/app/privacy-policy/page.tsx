@@ -199,10 +199,10 @@ export default function PrivacyPolicyPage() {
               <p className="mt-4">
                 To exercise any of these rights, please contact us at{" "}
                 <a
-                  href="mailto:privacy@skyheightsacademy.com"
+                  href="mailto:privacy@skyheightsacademy.ng"
                   className="text-royal-blue hover:underline"
                 >
-                  privacy@skyheightsacademy.com
+                  privacy@skyheightsacademy.ng
                 </a>
               </p>
             </section>
@@ -281,10 +281,10 @@ export default function PrivacyPolicyPage() {
                 <p>
                   Email:{" "}
                   <a
-                    href="mailto:privacy@skyheightsacademy.com"
+                    href="mailto:privacy@skyheightsacademy.ng"
                     className="text-royal-blue hover:underline"
                   >
-                    privacy@skyheightsacademy.com
+                    privacy@skyheightsacademy.ng
                   </a>
                 </p>
                 <p>Phone: +234 xxx xxx xxxx</p>

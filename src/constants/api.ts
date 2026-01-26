@@ -30,6 +30,9 @@ export const API_ROUTES = {
       DETAIL: "/public/announcements/:id",
       SEND: "/public/announcements/:id/send",
       CANCEL: "/public/announcements/:id/cancel"
+    },
+    CONTACT: {
+      SUBMIT: "/contact"
     }
   },
 };

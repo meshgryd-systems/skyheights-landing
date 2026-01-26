@@ -47,7 +47,7 @@ jobs:
       - name: Setup environment
         run: |
           echo "NODE_ENV=production" > .env.production
-          echo "API_URL=https://api.skyheightsacademy.com/api" >> .env.production
+          echo "API_URL=https://api.skyheightsacademy.ng/api" >> .env.production
 
       - name: Build application
         run: |
