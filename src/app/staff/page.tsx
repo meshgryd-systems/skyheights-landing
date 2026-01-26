@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useGetStaffQuery } from "@/store/services/staffSlice";
-import { STAFF_STATUS, StaffMemberWithComputed, StaffMember } from "@/types";
+import { STAFF_STATUS, STAFF_TYPE, StaffMemberWithComputed, StaffMember } from "@/types";
 import SectionContainer from "../../components/SectionContainer";
 import SectionHeader from "../../components/SectionHeader";
 import Button from "../../components/Button";
@@ -11,8 +11,25 @@ import Button from "../../components/Button";
 // Helper function to compute staff properties
 function computeStaffProperties(staff: StaffMember): StaffMemberWithComputed {
   const fullName = `${staff.firstName} ${staff.lastName}`.trim();
-  const category =
-    staff.metadata?.category ||
+
+  // Map STAFF_TYPE to category for display
+  const getCategoryFromType = (type?: STAFF_TYPE): "leadership" | "teaching" | "support" => {
+    if (!type) return "support";
+    switch (type) {
+      case STAFF_TYPE.LEADERSHIP:
+        return "leadership";
+      case STAFF_TYPE.TEACHER:
+        return "teaching";
+      case STAFF_TYPE.ADMINISTRATION:
+      case STAFF_TYPE.STAFF:
+      default:
+        return "support";
+    }
+  };
+
+  const category = staff.type
+    ? getCategoryFromType(staff.type)
+    : staff.metadata?.category ||
     (staff.position?.toLowerCase().includes("principal") ||
       staff.position?.toLowerCase().includes("head")
       ? "leadership"
@@ -30,14 +47,11 @@ function computeStaffProperties(staff: StaffMember): StaffMemberWithComputed {
   };
 }
 
-// Helper to generate slug from staff member
+// Helper to get slug from staff member (use backend slug if available)
 function getStaffSlug(staff: StaffMember): string {
-  return (
-    staff.metadata?.slug ||
-    `${staff.firstName}-${staff.lastName}`
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-  );
+  return staff.slug || `${staff.firstName}-${staff.lastName}`
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-");
 }
 
 export default function StaffPage() {
@@ -49,15 +63,21 @@ export default function StaffPage() {
 
   const allStaff = (staffData?.data || []).map(computeStaffProperties);
 
-  // Organize staff by category and department
+  // Organize staff by type/category and department
   const leadershipTeam = allStaff.filter(
-    (staff) => staff.category === "leadership"
+    (staff) =>
+      staff.type === STAFF_TYPE.LEADERSHIP || staff.category === "leadership"
   );
   const teachingStaff = allStaff.filter(
-    (staff) => staff.category === "teaching"
+    (staff) =>
+      staff.type === STAFF_TYPE.TEACHER || staff.category === "teaching"
   );
   const supportStaff = allStaff.filter(
-    (staff) => staff.category === "support"
+    (staff) =>
+      (staff.type === STAFF_TYPE.ADMINISTRATION ||
+        staff.type === STAFF_TYPE.STAFF ||
+        !staff.type) &&
+      staff.category === "support"
   );
 
   // Group teaching staff by department
@@ -74,8 +94,21 @@ export default function StaffPage() {
   return (
     <>
       {/* STAFF HERO - Phase 6: Calm academic imagery, institutional credibility */}
-      <section className="bg-[#eee5b5] text-white py-20 md:py-28">
-        <div className="container">
+      <section className="relative bg-[#eee5b5] text-white py-20 md:py-28 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/pics/14885.jpg"
+            alt="Skyheights Academy Staff"
+            fill
+            className="object-cover"
+          />
+        </div>
+
+        {/* Overlay for contrast */}
+        <div className="absolute inset-0 bg-black/50"></div>
+
+        <div className="container relative z-10">
           <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight">
             Our Staff & Leadership Team
           </h1>

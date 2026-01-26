@@ -2,6 +2,7 @@ import SectionContainer from "../../../components/SectionContainer";
 import SectionHeader from "../../../components/SectionHeader";
 import Button from "../../../components/Button";
 import Curriculum from "../../../components/Curriculum";
+import Image from "next/image";
 import {
   HiBookOpen,
   HiCalculator,
@@ -27,8 +28,21 @@ export default function PrimaryPage() {
   return (
     <>
       {/* PRIMARY HERO - Phase 5: Establish academic seriousness */}
-      <section className="bg-deep-navy text-white py-20 md:py-28">
-        <div className="container">
+      <section className="relative bg-deep-navy text-white py-20 md:py-28 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/pics/14930.jpg"
+            alt="Skyheights Academy Primary School"
+            fill
+            className="object-cover"
+          />
+        </div>
+        
+        {/* Overlay for contrast */}
+        <div className="absolute inset-0 bg-black/50"></div>
+        
+        <div className="container relative z-10">
           <div className="inline-block px-4 py-2 bg-heritage-brown/30 rounded-full mb-4">
             <span className="text-cream text-sm font-medium">
               Ages 6 - 11 years (Primary 1-6)

@@ -97,14 +97,23 @@ export enum STAFF_STATUS {
   INACTIVE = "inactive"
 }
 
+export enum STAFF_TYPE {
+  TEACHER = "teacher",
+  LEADERSHIP = "leadership",
+  ADMINISTRATION = "administration",
+  STAFF = "staff"
+}
+
 export interface StaffMember {
   id: string;
+  slug: string;
   firstName: string;
   lastName: string;
   bio?: string;
   position: string;
   email?: string;
   phoneNumber?: string;
+  type?: STAFF_TYPE;
   status: STAFF_STATUS;
   photoId?: string;
   photo?: File;
@@ -124,6 +133,7 @@ export interface StaffMember {
 
 export interface StaffFilterParams extends FilterParams<StaffMember> {
   status?: STAFF_STATUS;
+  type?: STAFF_TYPE;
   position?: string;
   featured?: boolean;
   search?: string;
@@ -131,9 +141,9 @@ export interface StaffFilterParams extends FilterParams<StaffMember> {
 
 // Helper type for computed staff properties
 export interface StaffMemberWithComputed extends StaffMember {
-  fullName: string; // firstName + lastName
-  category?: "leadership" | "teaching" | "support"; // Can be derived from position or metadata
-  department?: string; // Can be derived from metadata
+  fullName: string;
+  category?: "leadership" | "teaching" | "support";
+  department?: string;
 }
 
 // Event Types
@@ -167,8 +177,45 @@ export interface EventFilterParams extends FilterParams<Event> {
   status?: EVENT_STATUS;
   category?: string;
   featured?: boolean;
-  upcoming?: boolean; // Filter for future events
-  startDate?: string; // Filter events from this date
-  endDate?: string; // Filter events until this date
+  upcoming?: boolean;
+  startDate?: string;
+  endDate?: string;
   tags?: string[];
+}
+
+// Announcement Types
+export enum ANNOUNCEMENT_STATUS {
+  DRAFT = "draft",
+  SCHEDULED = "scheduled",
+  SENT = "sent",
+  CANCELLED = "cancelled"
+}
+
+export enum ANNOUNCEMENT_PRIORITY {
+  LOW = "low",
+  NORMAL = "normal",
+  HIGH = "high",
+  URGENT = "urgent"
+}
+
+export interface Announcement {
+  id: string;
+  title: string;
+  content: string;
+  summary?: string;
+  status: ANNOUNCEMENT_STATUS;
+  priority?: ANNOUNCEMENT_PRIORITY;
+  sendToAll?: boolean;
+  targetAudience?: string[];
+  recipientIds?: string[];
+  metadata?: Record<string, any>;
+  createdAt?: string;
+  updatedAt?: string;
+  sentAt?: string;
+}
+
+export interface AnnouncementFilterParams extends FilterParams<Announcement> {
+  status?: ANNOUNCEMENT_STATUS;
+  priority?: ANNOUNCEMENT_PRIORITY;
+  targetAudience?: string[];
 }

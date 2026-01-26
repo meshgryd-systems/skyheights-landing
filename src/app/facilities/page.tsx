@@ -1,6 +1,7 @@
 import SectionContainer from "../../components/SectionContainer";
 import SectionHeader from "../../components/SectionHeader";
 import Button from "../../components/Button";
+import Image from "next/image";
 
 export const metadata = {
   title: "School Facilities & Safety | Private School in Lugbe Abuja",
@@ -12,8 +13,21 @@ export default function FacilitiesPage() {
   return (
     <>
       {/* HERO - Phase 7: Answer silent parent concerns */}
-      <section className="bg-royal-blue text-white py-20 md:py-28">
-        <div className="container">
+      <section className="relative bg-royal-blue text-white py-20 md:py-28 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/pics/14910.jpg"
+            alt="Skyheights Academy Facilities"
+            fill
+            className="object-cover"
+          />
+        </div>
+        
+        {/* Overlay for contrast */}
+        <div className="absolute inset-0 bg-black/50"></div>
+        
+        <div className="container relative z-10">
           <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight">
             Our Facilities & Safety Standards
           </h1>

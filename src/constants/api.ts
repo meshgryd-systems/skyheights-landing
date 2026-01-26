@@ -19,8 +19,17 @@ export const API_ROUTES = {
     },
     EVENTS: {
       LIST: "/public/events",
+      UPCOMING: "/public/events/upcoming",
+      PAST: "/public/events/past",
+      BY_CATEGORY: "/public/events/category/:category",
       DETAIL: "/public/events/:id",
       DETAIL_BY_SLUG: "/public/events/slug/:slug"
+    },
+    ANNOUNCEMENTS: {
+      LIST: "/public/announcements",
+      DETAIL: "/public/announcements/:id",
+      SEND: "/public/announcements/:id/send",
+      CANCEL: "/public/announcements/:id/cancel"
     }
   },
 };

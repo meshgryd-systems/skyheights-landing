@@ -2,6 +2,7 @@ import SectionContainer from "../../../components/SectionContainer";
 import SectionHeader from "../../../components/SectionHeader";
 import Button from "../../../components/Button";
 import Curriculum from "../../../components/Curriculum";
+import Image from "next/image";
 
 export const metadata = {
   title: "Nursery School in Lugbe Abuja | Skyheights Academy",
@@ -13,8 +14,21 @@ export default function NurseryPage() {
   return (
     <>
       {/* NURSERY HERO - Phase 5: Show structure + gentle academics */}
-      <section className="bg-royal-blue text-white py-20 md:py-28">
-        <div className="container">
+      <section className="relative bg-royal-blue text-white py-20 md:py-28 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/pics/14925.jpg"
+            alt="Skyheights Academy Nursery"
+            fill
+            className="object-cover"
+          />
+        </div>
+        
+        {/* Overlay for contrast */}
+        <div className="absolute inset-0 bg-black/50"></div>
+        
+        <div className="container relative z-10">
           <div className="inline-block px-4 py-2 bg-white/20 rounded-full mb-4">
             <span className="text-white text-sm font-medium">
               Ages 2 - 5 years

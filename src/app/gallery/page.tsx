@@ -1,11 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import Image from "next/image";
 import { useGetGalleryQuery } from "@/store/services/gallerySlice";
-import { GALLERY_STATUS, GALLERY_TYPE } from "@/types";
+import { GALLERY_STATUS, GALLERY_TYPE, GalleryItem } from "@/types";
 import SectionContainer from "../../components/SectionContainer";
-import SectionHeader from "../../components/SectionHeader";
 import Button from "../../components/Button";
 import {
   HiBookOpen,
@@ -14,16 +13,43 @@ import {
   HiUserGroup
 } from "react-icons/hi2";
 
+const ITEMS_PER_PAGE = 12;
+
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [allItems, setAllItems] = useState<GalleryItem[]>([]);
+  const loadMoreRef = useRef<HTMLDivElement>(null);
 
-  const { data: galleryData, isLoading, error } = useGetGalleryQuery({
-    page: 1,
-    limit: 50,
-    status: GALLERY_STATUS.PUBLISHED,
-    type: GALLERY_TYPE.IMAGE,
-    ...(activeCategory !== "all" && { category: activeCategory })
-  });
+  const { data: galleryData, isLoading, error, isFetching } = useGetGalleryQuery(
+    {
+      page: currentPage,
+      limit: ITEMS_PER_PAGE,
+      status: GALLERY_STATUS.PUBLISHED,
+      type: GALLERY_TYPE.IMAGE,
+      ...(activeCategory !== "all" && { category: activeCategory })
+    }
+  );
+
+  useEffect(() => {
+
+    setTimeout(() => {
+      setCurrentPage(1);
+      setAllItems([]);
+    }, 1000);
+  }, [activeCategory]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (galleryData?.data) {
+        setAllItems(galleryData.data);
+      }
+    }, 1000);
+  }, [galleryData?.data]);
+
+  const hasMore = useMemo(() => {
+    return galleryData?.pagination && currentPage < galleryData.pagination.totalPages;
+  }, [galleryData?.pagination, currentPage]);
 
   const categories = [
     { id: "all", name: "All Photos" },
@@ -33,92 +59,24 @@ export default function GalleryPage() {
     { id: "student-life", name: "Student Life" }
   ];
 
-  // Use API data or fallback to placeholder
-  const galleryItems = galleryData?.data || [
-    {
-      id: 1,
-      category: "classrooms",
-      title: "Primary classroom learning session",
-      caption: "Students engaged in interactive learning"
-    },
-    {
-      id: 2,
-      category: "classrooms",
-      title: "Science practical lesson",
-      caption: "Hands-on laboratory work"
-    },
-    {
-      id: 3,
-      category: "facilities",
-      title: "School library",
-      caption: "Quiet reading and research area"
-    },
-    {
-      id: 4,
-      category: "facilities",
-      title: "Computer laboratory",
-      caption: "Modern ICT facilities"
-    },
-    {
-      id: 5,
-      category: "facilities",
-      title: "Science laboratory",
-      caption: "Well-equipped for practicals"
-    },
-    {
-      id: 6,
-      category: "events",
-      title: "Inter-house sports day",
-      caption: "Annual sporting competition"
-    },
-    {
-      id: 7,
-      category: "events",
-      title: "Cultural day celebration",
-      caption: "Students in traditional attire"
-    },
-    {
-      id: 8,
-      category: "events",
-      title: "Academic awards ceremony",
-      caption: "Recognizing excellence"
-    },
-    {
-      id: 9,
-      category: "student-life",
-      title: "Morning assembly",
-      caption: "Students gathered for assembly"
-    },
-    {
-      id: 10,
-      category: "student-life",
-      title: "Break time activities",
-      caption: "Supervised recreation"
-    },
-    {
-      id: 11,
-      category: "student-life",
-      title: "Club activities",
-      caption: "Extra-curricular engagement"
-    },
-    {
-      id: 12,
-      category: "classrooms",
-      title: "Group study session",
-      caption: "Collaborative learning"
+  const filteredItems = useMemo(() => {
+    if (activeCategory === "all") {
+      return allItems;
     }
-  ];
-
-  const filteredItems =
-    activeCategory === "all"
-      ? galleryItems
-      : galleryItems.filter((item: any) => item.category === activeCategory);
+    return allItems.filter((item) => item.category === activeCategory);
+  }, [allItems, activeCategory]);
 
   return (
     <>
       {/* HERO - Phase 8: Let parents see the environment */}
-      <section className="bg-[#eee5b5] text-white py-20 md:py-28">
-        <div className="container">
+      <section
+        className="relative bg-[#eee5b5] text-white py-20 md:py-28 overflow-hidden"
+        style={{ backgroundImage: "url('/pics/14895.jpg')", backgroundSize: "cover", backgroundPositionY: "-150px" }}
+      >
+        {/* Overlay for contrast */}
+        <div className="absolute inset-0 bg-black/50"></div>
+
+        <div className="container relative z-10">
           <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight">
             Gallery
           </h1>
@@ -135,11 +93,10 @@ export default function GalleryPage() {
             <button
               key={category.id}
               onClick={() => setActiveCategory(category.id)}
-              className={`px-6 py-3 rounded-[10px] font-medium text-sm transition-all duration-250 ${
-                activeCategory === category.id
-                  ? "bg-heritage-brown text-white"
-                  : "bg-light-grey text-deep-navy hover:bg-divider-grey"
-              }`}
+              className={`px-6 py-3 rounded-[10px] font-medium text-sm transition-all duration-250 ${activeCategory === category.id
+                ? "bg-heritage-brown text-white"
+                : "bg-light-grey text-deep-navy hover:bg-divider-grey"
+                }`}
             >
               {category.name}
             </button>
@@ -147,7 +104,7 @@ export default function GalleryPage() {
         </div>
 
         {/* GALLERY GRID - Phase 8: Clean presentation, lazy loading ready */}
-        {isLoading ? (
+        {isLoading && currentPage === 1 ? (
           <div className="text-center py-12">
             <p className="text-text-grey">Loading gallery...</p>
           </div>
@@ -160,7 +117,7 @@ export default function GalleryPage() {
         ) : (
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredItems.map((item: any) => (
+              {filteredItems.map((item) => (
                 <div key={item.id} className="group cursor-pointer">
                   <div
                     className="relative bg-light-grey rounded-[14px] overflow-hidden"
@@ -221,10 +178,31 @@ export default function GalleryPage() {
               ))}
             </div>
 
-            {filteredItems.length === 0 && (
+            {filteredItems.length === 0 && !isLoading && (
               <div className="text-center py-12">
                 <p className="text-text-grey">
                   No photos available in this category yet.
+                </p>
+              </div>
+            )}
+
+            {/* Infinite scroll trigger */}
+            {hasMore && (
+              <div ref={loadMoreRef} className="col-span-full py-8">
+                {isFetching && (
+                  <div className="text-center">
+                    <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-heritage-brown"></div>
+                    <p className="text-text-grey mt-4">Loading more...</p>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* End of results */}
+            {!hasMore && filteredItems.length > 0 && (
+              <div className="col-span-full text-center py-8">
+                <p className="text-text-grey text-sm">
+                  You&apos;ve reached the end of the gallery
                 </p>
               </div>
             )}

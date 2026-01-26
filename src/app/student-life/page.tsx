@@ -2,6 +2,7 @@ import SectionContainer from "../../components/SectionContainer";
 import SectionTitle from "../../components/SectionTitle";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
+import Image from "next/image";
 import {
   HiShieldCheck,
   HiUserGroup,
@@ -21,8 +22,21 @@ export default function StudentLifePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-heritage-brown to-royal-blue text-white py-20 md:py-28">
-        <div className="container">
+      <section className="relative bg-gradient-to-r from-heritage-brown to-royal-blue text-white py-20 md:py-28 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/pics/14915.jpg"
+            alt="Skyheights Academy Student Life"
+            fill
+            className="object-cover"
+          />
+        </div>
+        
+        {/* Overlay for contrast */}
+        <div className="absolute inset-0 bg-black/50"></div>
+        
+        <div className="container relative z-10">
           <h1 className="font-playfair font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
             Student Life
           </h1>

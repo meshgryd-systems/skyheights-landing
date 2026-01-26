@@ -1,6 +1,7 @@
 import SectionContainer from "../../../components/SectionContainer";
 import SectionHeader from "../../../components/SectionHeader";
 import Button from "../../../components/Button";
+import Image from "next/image";
 
 export const metadata = {
   title: "Creche School in Lugbe Abuja | Skyheights Academy",
@@ -12,8 +13,21 @@ export default function CrechePage() {
   return (
     <>
       {/* CRECHE HERO - Phase 5: Reassure parents of care, safety, early development */}
-      <section className="bg-heritage-brown text-white py-20 md:py-28">
-        <div className="container">
+      <section className="relative bg-heritage-brown text-white py-20 md:py-28 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/pics/14920.jpg"
+            alt="Skyheights Academy Creche"
+            fill
+            className="object-cover"
+          />
+        </div>
+        
+        {/* Overlay for contrast */}
+        <div className="absolute inset-0 bg-black/50"></div>
+        
+        <div className="container relative z-10">
           <div className="inline-block px-4 py-2 bg-cream/20 rounded-full mb-4">
             <span className="text-cream text-sm font-medium">
               Ages 6 months - 2 years

@@ -17,22 +17,25 @@ export default function Home() {
     <>
       {/* HERO SECTION - Above the Fold */}
       {/* Phase 3: NO gradients - solid heritage brown */}
-      <section className="relative min-h-[85vh] flex items-center bg-[#eee5b5] text-white overflow-hidden">
+      <section
+        className="relative min-h-[85vh] flex items-center bg-[#eee5b5] text-white overflow-hidden"
+        style={{ backgroundImage: "url('/pics/14872.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
+      >
         {/* Overlay for contrast */}
-        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="absolute inset-0 bg-black/60 z-10"></div>
 
         {/* Content */}
-        <div className="relative container py-20 md:py-24 w-full">
+        <div className="relative container py-20 md:py-24 w-full z-20">
           <div className="max-w-4xl">
             {/* Hero Headline - Phase 3: 56-64px (3.5-4rem) */}
-            <h1 className="font-playfair font-bold text-[3.5rem] md:text-[4rem] mb-6 leading-tight animate-fade-in">
+            <h1 className="font-playfair font-bold text-[3.5rem] md:text-[4rem] mb-6 leading-tight animate-fade-in text-white drop-shadow-lg">
               Nurturing Excellence.
               <br />
               Shaping Future Leaders.
             </h1>
 
             {/* Hero Subtext */}
-            <p className="text-lg md:text-xl lg:text-2xl text-cream/95 mb-10 max-w-3xl leading-relaxed font-light">
+            <p className="text-lg md:text-xl lg:text-2xl text-white/95 mb-10 max-w-3xl leading-relaxed font-light drop-shadow-md">
               Skyheights Academy is a private co-educational institution
               offering Nigerian, British, and Montessori curricula — committed
               to raising confident, disciplined, and well-rounded learners.
@@ -61,7 +64,7 @@ export default function Home() {
         </div>
 
         {/* Subtle bottom curve */}
-        <div className="absolute bottom-0 left-0 right-0">
+        <div className="absolute bottom-0 left-0 right-0 z-30">
           <svg
             viewBox="0 0 1440 80"
             fill="none"
@@ -82,7 +85,7 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             <div className="flex items-center space-x-3">
               <svg
-                className="w-6 h-6 text-heritage-brown flex-shrink-0"
+                className="w-6 h-6 text-heritage-brown shrink-0"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -99,7 +102,7 @@ export default function Home() {
 
             <div className="flex items-center space-x-3">
               <svg
-                className="w-6 h-6 text-heritage-brown flex-shrink-0"
+                className="w-6 h-6 text-heritage-brown shrink-0"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -116,7 +119,7 @@ export default function Home() {
 
             <div className="flex items-center space-x-3">
               <svg
-                className="w-6 h-6 text-heritage-brown flex-shrink-0"
+                className="w-6 h-6 text-heritage-brown shrink-0"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -133,7 +136,7 @@ export default function Home() {
 
             <div className="flex items-center space-x-3">
               <svg
-                className="w-6 h-6 text-heritage-brown flex-shrink-0"
+                className="w-6 h-6 text-heritage-brown shrink-0"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -174,22 +177,22 @@ export default function Home() {
             </Button>
           </div>
 
-          <div className="bg-cream/30 rounded-lg p-12 flex items-center justify-center min-h-[400px] relative overflow-hidden">
-            <div className="absolute inset-0 flex items-center justify-center opacity-10">
-              <div className="w-64 h-64 relative">
-                <Image
-                  src="/favicon.ico"
-                  alt="Skyheights Academy Crest"
-                  fill
-                  className="object-contain"
-                />
+          <div className="rounded-lg overflow-hidden relative h-[400px]">
+            <Image
+              src="/pics/14875.jpg"
+              alt="Skyheights Academy Learning Environment"
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent flex items-end">
+              <div className="p-8 text-white">
+                <p className="text-2xl font-playfair font-bold">
+                  Excellence Since 2017
+                </p>
+                <p className="text-sm mt-2 opacity-90">
+                  Building Future Leaders
+                </p>
               </div>
-            </div>
-            <div className="relative text-center">
-              <div className="text-7xl mb-4">🏫</div>
-              <p className="text-xl font-playfair font-bold text-deep-navy">
-                Excellence Since 2017
-              </p>
             </div>
           </div>
         </div>
@@ -342,7 +345,7 @@ export default function Home() {
         <div className="mt-12 max-w-3xl mx-auto bg-heritage-brown/10 border-l-4 border-heritage-brown p-6 rounded-lg">
           <div className="flex items-start space-x-4">
             <svg
-              className="w-6 h-6 text-heritage-brown flex-shrink-0 mt-1"
+              className="w-6 h-6 text-heritage-brown shrink-0 mt-1"
               fill="currentColor"
               viewBox="0 0 20 20"
             >

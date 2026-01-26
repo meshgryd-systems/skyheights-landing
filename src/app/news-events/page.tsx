@@ -1,7 +1,9 @@
 "use client";
 
+import Link from "next/link";
+import Image from "next/image";
 import { useGetNewsQuery } from "@/store/services/newsSlice";
-import { useGetEventsQuery } from "@/store/services/eventsSlice";
+import { useGetUpcomingEventsQuery } from "@/store/services/eventsSlice";
 import { EVENT_STATUS } from "@/types";
 import SectionContainer from "../../components/SectionContainer";
 import SectionHeader from "../../components/SectionHeader";
@@ -12,70 +14,17 @@ export default function NewsEventsPage() {
     useGetNewsQuery({
       page: 1,
       limit: 6,
-      status: "published" as any
     });
 
   const { data: eventsData, isLoading: eventsLoading, error: eventsError } =
-    useGetEventsQuery({
+    useGetUpcomingEventsQuery({
       page: 1,
       limit: 10,
-      status: EVENT_STATUS.PUBLISHED,
-      upcoming: true // Only get future events
+      status: EVENT_STATUS.PUBLISHED
     });
 
-  // Phase 8: News items - formal, calm, informative
-  const newsItems = newsData?.data || [
-    {
-      id: 1,
-      title: "First Term Resumption Notice",
-      date: "2024-09-10",
-      excerpt:
-        "The school will resume for the first term academic session on Monday, September 16, 2024. All students are expected to report by 8:00 AM.",
-      category: "Announcement"
-    },
-    {
-      id: 2,
-      title: "Inter-House Sports Competition Results",
-      date: "2024-08-25",
-      excerpt:
-        "The annual inter-house sports competition concluded successfully with outstanding performances from all participating houses.",
-      category: "Sports"
-    },
-    {
-      id: 3,
-      title: "Academic Excellence Awards 2023/2024",
-      date: "2024-07-15",
-      excerpt:
-        "Skyheights Academy celebrates the exceptional academic achievements of students who demonstrated outstanding performance during the 2023/2024 session.",
-      category: "Academic"
-    },
-    {
-      id: 4,
-      title: "Parent-Teacher Conference Schedule",
-      date: "2024-10-20",
-      excerpt:
-        "The second term parent-teacher conferences will be held from November 5-7, 2024. Parents are encouraged to schedule appointments with class teachers.",
-      category: "Announcement"
-    },
-    {
-      id: 5,
-      title: "Cultural Day Celebration",
-      date: "2024-10-01",
-      excerpt:
-        "Students showcased the rich cultural heritage of Nigeria through traditional attire, performances, and presentations during the annual cultural day.",
-      category: "Events"
-    },
-    {
-      id: 6,
-      title: "Science Fair 2024",
-      date: "2024-11-15",
-      excerpt:
-        "Primary and secondary students will present innovative projects at the annual science fair, demonstrating practical applications of scientific concepts.",
-      category: "Academic"
-    }
-  ];
 
-  // Format event date for display
+
   const formatEventDate = (event: any) => {
     const startDate = new Date(event.startDate);
     const endDate = event.endDate ? new Date(event.endDate) : null;
@@ -89,22 +38,32 @@ export default function NewsEventsPage() {
     };
 
     if (endDate && startDate.getTime() !== endDate.getTime()) {
-      // Date range
       return `${formatDate(startDate)} - ${formatDate(endDate)}`;
     } else {
-      // Single date
       return formatDate(startDate);
     }
   };
 
-  // Get upcoming events from API or fallback
   const upcomingEvents = eventsData?.data || [];
 
   return (
     <>
       {/* HERO - Phase 8: Show school is alive, structured, current */}
-      <section className="bg-[#eee5b5] text-white py-20 md:py-28">
-        <div className="container">
+      <section className="relative bg-[#eee5b5] text-white py-20 md:py-28 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/pics/14890.jpg"
+            alt="Skyheights Academy News & Events"
+            fill
+            className="object-cover"
+          />
+        </div>
+
+        {/* Overlay for contrast */}
+        <div className="absolute inset-0 bg-black/50"></div>
+
+        <div className="container relative z-10">
           <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight">
             News & Events
           </h1>
@@ -133,7 +92,7 @@ export default function NewsEventsPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 container">
-            {newsItems.map((news: any) => (
+            {newsData?.data?.map((news: any) => (
               <div
                 key={news.id}
                 className="bg-light-grey rounded-[14px] overflow-hidden"
@@ -177,7 +136,7 @@ export default function NewsEventsPage() {
                   </p>
 
                   {/* Read More */}
-                  <a
+                  <Link
                     href={`/news-events/${news.slug || news.id}`}
                     className="text-heritage-brown font-medium text-sm hover:text-heritage-brown-dark transition-colors flex items-center"
                   >
@@ -195,7 +154,7 @@ export default function NewsEventsPage() {
                         d="M9 5l7 7-7 7"
                       />
                     </svg>
-                  </a>
+                  </Link>
                 </div>
               </div>
             ))}

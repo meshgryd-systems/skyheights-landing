@@ -18,6 +18,53 @@ export const eventsApi = apiSlice.injectEndpoints({
             providesTags: () => [{ type: RTK_TAGS.EVENT, id: "LIST" }]
         }),
 
+        getUpcomingEvents: builder.query<PaginatedResponse<Event>, EventFilterParams>({
+            query: (params) => {
+                return {
+                    url: `${API_ROUTES.PUBLIC.EVENTS.UPCOMING}`,
+                    params,
+                    method: "GET"
+                };
+            },
+            transformResponse: (response: any) => {
+                return response?.response || response;
+            },
+            providesTags: () => [{ type: RTK_TAGS.EVENT, id: "UPCOMING" }]
+        }),
+
+        getPastEvents: builder.query<PaginatedResponse<Event>, EventFilterParams>({
+            query: (params) => {
+                return {
+                    url: `${API_ROUTES.PUBLIC.EVENTS.PAST}`,
+                    params,
+                    method: "GET"
+                };
+            },
+            transformResponse: (response: any) => {
+                return response?.response || response;
+            },
+            providesTags: () => [{ type: RTK_TAGS.EVENT, id: "PAST" }]
+        }),
+
+        getEventsByCategory: builder.query<
+            PaginatedResponse<Event>,
+            { category: string } & EventFilterParams
+        >({
+            query: ({ category, ...params }) => {
+                return {
+                    url: API_ROUTES.PUBLIC.EVENTS.BY_CATEGORY.replace(":category", category),
+                    params,
+                    method: "GET"
+                };
+            },
+            transformResponse: (response: any) => {
+                return response?.response || response;
+            },
+            providesTags: (result, error, { category }) => [
+                { type: RTK_TAGS.EVENT, id: `CATEGORY_${category}` }
+            ]
+        }),
+
         getEventById: builder.query<Event, string>({
             query: (id) => ({
                 url: API_ROUTES.PUBLIC.EVENTS.DETAIL.replace(":id", id),
@@ -46,6 +93,9 @@ export const eventsApi = apiSlice.injectEndpoints({
 
 export const {
     useGetEventsQuery,
+    useGetUpcomingEventsQuery,
+    useGetPastEventsQuery,
+    useGetEventsByCategoryQuery,
     useGetEventByIdQuery,
     useGetEventBySlugQuery
 } = eventsApi;

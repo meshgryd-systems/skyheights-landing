@@ -7,6 +7,7 @@ export const RTK_TAGS = {
   GALLERY: "Gallery",
   STAFF: "Staff",
   EVENT: "Event",
+  ANNOUNCEMENT: "Announcement",
   REGULATOR: "Regulator",
   COMPLAINT: "Complaint",
   REVIEW: "Review",

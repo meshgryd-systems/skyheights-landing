@@ -2,6 +2,7 @@ import SectionContainer from "../../components/SectionContainer";
 import SectionHeader from "../../components/SectionHeader";
 import Button from "../../components/Button";
 import Link from "next/link";
+import Image from "next/image";
 import { HiShieldCheck, HiGlobeAlt, HiSparkles } from "react-icons/hi2";
 
 export const metadata = {
@@ -14,8 +15,21 @@ export default function AcademicsPage() {
   return (
     <>
       {/* ACADEMICS LANDING PAGE HERO - Phase 5: Methodical, calm, authoritative */}
-      <section className="bg-[#eee5b5] text-white py-20 md:py-28">
-        <div className="container">
+      <section className="relative bg-[#eee5b5] text-white py-20 md:py-28 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/pics/14900.jpg"
+            alt="Skyheights Academy Academics"
+            fill
+            className="object-cover"
+          />
+        </div>
+        
+        {/* Overlay for contrast */}
+        <div className="absolute inset-0 bg-black/50"></div>
+        
+        <div className="container relative z-10">
           <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight">
             Our Academic Programmes
           </h1>
