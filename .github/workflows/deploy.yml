@@ -48,9 +48,6 @@ jobs:
         run: |
           export NODE_OPTIONS=--max-old-space-size=4096
           npm run build
-        env:
-          NODE_ENV: production
-          NEXT_TELEMETRY_DISABLED: 1
 
       - name: Deploy to server
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4

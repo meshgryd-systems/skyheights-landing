@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import SchoolSchema from "../components/SchoolSchema";
+import StoreProvider from "@/providers/StoreProvider";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -41,10 +42,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${playfair.variable} ${inter.variable} antialiased`}>
-        <SchoolSchema />
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <StoreProvider>
+          <SchoolSchema />
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </StoreProvider>
       </body>
     </html>
   );

@@ -27,7 +27,7 @@ export default function AboutPage() {
       {/* SCHOOL OVERVIEW - Phase 6: Who We Are */}
       <SectionContainer background="white">
         <SectionHeader title="Who We Are" />
-        <div className="max-w-4xl">
+        <div className="max-w-4xl mx-auto text-center">
           <p className="text-lg text-text-grey leading-relaxed mb-6">
             Skyheights Academy is a{" "}
             <strong>private co-educational institution</strong> located in
@@ -52,7 +52,7 @@ export default function AboutPage() {
       {/* OUR HISTORY - Phase 6: Our Journey, continuity and experience */}
       <SectionContainer background="light">
         <SectionHeader title="Our Journey" />
-        <div className="max-w-4xl">
+        <div className="max-w-4xl mx-auto text-center">
           <p className="text-lg text-text-grey leading-relaxed mb-6">
             <strong>Founded in 2017</strong>, Skyheights Academy was established
             with a clear vision: to provide a balanced education that combines
@@ -177,7 +177,7 @@ export default function AboutPage() {
       {/* OUR EDUCATIONAL PHILOSOPHY - Phase 6: Intentional, not experimental */}
       <SectionContainer background="light">
         <SectionHeader title="Our Educational Approach" />
-        <div className="max-w-4xl">
+        <div className="max-w-4xl mx-auto text-center">
           <p className="text-lg text-text-grey leading-relaxed mb-8">
             At Skyheights Academy, we believe that education extends beyond the
             classroom. Our approach combines academic rigor, moral discipline,
@@ -217,18 +217,8 @@ export default function AboutPage() {
                 className="flex items-start space-x-3 p-4 bg-white rounded-[10px]"
                 style={{ boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.05)" }}
               >
-                <svg
-                  className="w-5 h-5 text-royal-blue shrink-0 mt-1"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <div>
+
+                <div className="text-left">
                   <p className="font-semibold text-deep-navy mb-1">
                     {item.principle}
                   </p>
@@ -335,6 +325,100 @@ export default function AboutPage() {
               </p>
             </div>
           ))}
+        </div>
+      </SectionContainer>
+
+      {/* OUR STAFF - Phase 6: Dedicated educators, professional team */}
+      <SectionContainer background="white">
+        <SectionHeader
+          title="Our Leadership Team"
+          subtitle="Experienced educators committed to excellence"
+          centered
+        />
+        <div className="max-w-6xl mx-auto">
+          <p className="text-lg text-text-grey text-center mb-12 leading-relaxed max-w-3xl mx-auto">
+            Our team of qualified and dedicated educators brings years of
+            experience and a passion for nurturing young minds. Together, we
+            create an environment where every student can thrive.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Principal",
+                role: "School Principal",
+                qualifications: "M.Ed, B.Ed",
+                description:
+                  "Leading our academic vision with over 15 years of educational leadership experience"
+              },
+              {
+                name: "Vice Principal",
+                role: "Vice Principal",
+                qualifications: "M.Ed, PGDE",
+                description:
+                  "Supporting daily operations and ensuring high standards across all academic levels"
+              },
+              {
+                name: "Head of Academics",
+                role: "Head of Academics",
+                qualifications: "M.Sc, B.Ed",
+                description:
+                  "Overseeing curriculum development and academic excellence across all departments"
+              },
+              {
+                name: "Head of Primary",
+                role: "Head of Primary School",
+                qualifications: "B.Ed, NCE",
+                description:
+                  "Guiding primary education with expertise in child development and learning"
+              },
+              {
+                name: "Head of Secondary",
+                role: "Head of Secondary School",
+                qualifications: "M.Ed, B.Sc",
+                description:
+                  "Preparing students for examinations and future academic pursuits"
+              },
+              {
+                name: "Head of Early Years",
+                role: "Head of Early Years",
+                qualifications: "B.Ed, Montessori Certified",
+                description:
+                  "Nurturing our youngest learners with specialized early childhood education"
+              }
+            ].map((staff, index) => (
+              <div
+                key={index}
+                className="bg-light-grey rounded-[14px] p-6 text-center"
+                style={{ boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.05)" }}
+              >
+                <div className="w-24 h-24 bg-royal-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg
+                    className="w-12 h-12 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
+                  </svg>
+                </div>
+                <h4 className="font-playfair font-bold text-xl text-deep-navy mb-2">
+                  {staff.name}
+                </h4>
+                <p className="text-heritage-brown font-semibold text-sm mb-2">
+                  {staff.role}
+                </p>
+                <p className="text-text-grey text-xs mb-3">{staff.qualifications}</p>
+                <p className="text-text-grey text-sm leading-relaxed">
+                  {staff.description}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </SectionContainer>
 

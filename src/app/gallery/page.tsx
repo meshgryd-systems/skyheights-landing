@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
+import { useGetGalleryQuery } from "@/store/services/gallerySlice";
+import { GALLERY_STATUS, GALLERY_TYPE } from "@/types";
 import SectionContainer from "../../components/SectionContainer";
 import SectionHeader from "../../components/SectionHeader";
 import Button from "../../components/Button";
@@ -14,6 +17,14 @@ import {
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState("all");
 
+  const { data: galleryData, isLoading, error } = useGetGalleryQuery({
+    page: 1,
+    limit: 50,
+    status: GALLERY_STATUS.PUBLISHED,
+    type: GALLERY_TYPE.IMAGE,
+    ...(activeCategory !== "all" && { category: activeCategory })
+  });
+
   const categories = [
     { id: "all", name: "All Photos" },
     { id: "classrooms", name: "Classrooms & Learning" },
@@ -22,8 +33,8 @@ export default function GalleryPage() {
     { id: "student-life", name: "Student Life" }
   ];
 
-  // Placeholder gallery items
-  const galleryItems = [
+  // Use API data or fallback to placeholder
+  const galleryItems = galleryData?.data || [
     {
       id: 1,
       category: "classrooms",
@@ -101,7 +112,7 @@ export default function GalleryPage() {
   const filteredItems =
     activeCategory === "all"
       ? galleryItems
-      : galleryItems.filter((item) => item.category === activeCategory);
+      : galleryItems.filter((item: any) => item.category === activeCategory);
 
   return (
     <>
@@ -136,64 +147,88 @@ export default function GalleryPage() {
         </div>
 
         {/* GALLERY GRID - Phase 8: Clean presentation, lazy loading ready */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredItems.map((item) => (
-            <div key={item.id} className="group cursor-pointer">
-              <div
-                className="relative bg-light-grey rounded-[14px] overflow-hidden"
-                style={{ aspectRatio: "4/3" }}
-              >
-                {/* Placeholder for actual images */}
-                <div className="w-full h-full flex items-center justify-center">
-                  <div className="text-center p-6">
-                    <div className="w-16 h-16 mx-auto mb-4 text-heritage-brown flex items-center justify-center">
-                      {item.category === "classrooms" && (
-                        <HiBookOpen className="w-16 h-16" />
-                      )}
-                      {item.category === "facilities" && (
-                        <HiBuildingOffice className="w-16 h-16" />
-                      )}
-                      {item.category === "events" && (
-                        <HiCalendar className="w-16 h-16" />
-                      )}
-                      {item.category === "student-life" && (
-                        <HiUserGroup className="w-16 h-16" />
-                      )}
-                    </div>
-                    <p className="text-text-grey text-sm">{item.title}</p>
-                  </div>
-                </div>
-                {/* Hover overlay */}
-                <div className="absolute inset-0 bg-deep-navy/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <svg
-                    className="w-12 h-12 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                    />
-                  </svg>
-                </div>
-              </div>
-              {/* SHORT CAPTION ONLY - Phase 8: No emojis, no slang */}
-              <p className="text-sm text-text-grey mt-3 text-center">
-                {item.caption}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {filteredItems.length === 0 && (
+        {isLoading ? (
+          <div className="text-center py-12">
+            <p className="text-text-grey">Loading gallery...</p>
+          </div>
+        ) : error ? (
           <div className="text-center py-12">
             <p className="text-text-grey">
-              No photos available in this category yet.
+              Unable to load gallery. Please try again later.
             </p>
           </div>
+        ) : (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredItems.map((item: any) => (
+                <div key={item.id} className="group cursor-pointer">
+                  <div
+                    className="relative bg-light-grey rounded-[14px] overflow-hidden"
+                    style={{ aspectRatio: "4/3" }}
+                  >
+                    {/* Actual image or placeholder */}
+                    {item.media?.url ? (
+                      <Image
+                        src={item.media.url}
+                        alt={item.title || item.description || "Gallery image"}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <div className="text-center p-6">
+                          <div className="w-16 h-16 mx-auto mb-4 text-heritage-brown flex items-center justify-center">
+                            {item.category === "classrooms" && (
+                              <HiBookOpen className="w-16 h-16" />
+                            )}
+                            {item.category === "facilities" && (
+                              <HiBuildingOffice className="w-16 h-16" />
+                            )}
+                            {item.category === "events" && (
+                              <HiCalendar className="w-16 h-16" />
+                            )}
+                            {item.category === "student-life" && (
+                              <HiUserGroup className="w-16 h-16" />
+                            )}
+                          </div>
+                          <p className="text-text-grey text-sm">{item.title}</p>
+                        </div>
+                      </div>
+                    )}
+                    {/* Hover overlay */}
+                    <div className="absolute inset-0 bg-deep-navy/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <svg
+                        className="w-12 h-12 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  {/* SHORT CAPTION ONLY - Phase 8: No emojis, no slang */}
+                  <p className="text-sm text-text-grey mt-3 text-center">
+                    {item.description || item.title}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {filteredItems.length === 0 && (
+              <div className="text-center py-12">
+                <p className="text-text-grey">
+                  No photos available in this category yet.
+                </p>
+              </div>
+            )}
+          </>
         )}
       </SectionContainer>
 

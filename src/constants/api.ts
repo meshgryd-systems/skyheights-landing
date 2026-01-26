@@ -1,0 +1,39 @@
+// API endpoints
+export const API_ROUTES = {
+  // Forum
+  PUBLIC: {
+    NEWS: {
+      LIST: "/public/news",
+      DETAIL: "/public/news/:id",
+      DETAIL_BY_SLUG: "/public/news/slug/:slug"
+    },
+    GALLERY: {
+      LIST: "/public/gallery",
+      DETAIL: "/public/gallery/:id",
+      DETAIL_BY_SLUG: "/public/gallery/slug/:slug"
+    },
+    STAFF: {
+      LIST: "/public/staff",
+      DETAIL: "/public/staff/:id",
+      DETAIL_BY_SLUG: "/public/staff/slug/:slug"
+    },
+    EVENTS: {
+      LIST: "/public/events",
+      DETAIL: "/public/events/:id",
+      DETAIL_BY_SLUG: "/public/events/slug/:slug"
+    }
+  },
+};
+
+export const API_CONFIG = {
+  baseUrl: process.env.NEXT_PUBLIC_API_URL,
+  assetsUrl: process.env.NEXT_PUBLIC_API_ASSETS_URL,
+  timeout: 60000
+} as const;
+
+export type ApiKey = keyof typeof API_ROUTES;
+export type ApiEndpoint = (typeof API_ROUTES)[ApiKey] extends {
+  [key: string]: string;
+}
+  ? (typeof API_ROUTES)[ApiKey][keyof (typeof API_ROUTES)[ApiKey]]
+  : (typeof API_ROUTES)[ApiKey];
