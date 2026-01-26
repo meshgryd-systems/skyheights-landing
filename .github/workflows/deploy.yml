@@ -52,7 +52,7 @@ jobs:
       - name: Build application
         run: |
           export NODE_OPTIONS=--max-old-space-size=4096
-          pnpm run build
+          pnpm run build --NODE_ENV=${{ github.ref_name == 'main' && 'production' || 'staging' }}
 
       - name: Deploy to server
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
