@@ -3,13 +3,13 @@ name: Deploy Website
 on:
   push:
     branches:
-      - master
+      - main
       - staging
 
 jobs:
   deploy:
     name:
-      Deploy to ${{ github.ref_name == 'master' && 'Production' || 'Staging' }}
+      Deploy to ${{ github.ref_name == 'main' && 'Production' || 'Staging' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -59,10 +59,10 @@ jobs:
         with:
           server: ${{ secrets.FTP_SERVER }}
           username:
-            ${{ github.ref_name == 'master' && secrets.FTP_USERNAME ||
+            ${{ github.ref_name == 'main' && secrets.FTP_USERNAME ||
             secrets.FTP_STAGING_USERNAME }}
           password:
-            ${{ github.ref_name == 'master' && secrets.FTP_PASSWORD ||
+            ${{ github.ref_name == 'main' && secrets.FTP_PASSWORD ||
             secrets.FTP_STAGING_PASSWORD }}
           protocol: ftps
           local-dir: ./
