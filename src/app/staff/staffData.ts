@@ -318,6 +318,7 @@ export const supportStaff: StaffMember[] = [
     id: generateId("Administrative Officer"),
     name: "Administrative Officer",
     role: "School Administrator",
+    qualifications: "B.Sc, MBA",
     description: "Managing school operations and administrative processes",
     category: "support",
     bio:
@@ -327,6 +328,7 @@ export const supportStaff: StaffMember[] = [
     id: generateId("ICT Coordinator"),
     name: "ICT Coordinator",
     role: "ICT Support",
+    qualifications: "B.Sc, MBA",
     description: "Supporting technology integration and computer lab management",
     category: "support",
     bio:
@@ -336,6 +338,7 @@ export const supportStaff: StaffMember[] = [
     id: generateId("Librarian"),
     name: "Librarian",
     role: "Library Coordinator",
+    qualifications: "B.Sc, MBA",
     description: "Managing library resources and promoting reading culture",
     category: "support",
     bio:
@@ -345,6 +348,7 @@ export const supportStaff: StaffMember[] = [
     id: generateId("Guidance Counselor"),
     name: "Guidance Counselor",
     role: "Student Counselor",
+    qualifications: "B.Sc, MBA",
     description: "Providing academic and personal guidance to students",
     category: "support",
     bio:
@@ -354,6 +358,7 @@ export const supportStaff: StaffMember[] = [
     id: generateId("Nurse"),
     name: "Nurse",
     role: "School Nurse",
+    qualifications: "B.Sc, MBA",
     description: "Ensuring student health and wellness on campus",
     category: "support",
     bio:
@@ -363,6 +368,7 @@ export const supportStaff: StaffMember[] = [
     id: generateId("Security Personnel"),
     name: "Security Personnel",
     role: "Security Team",
+    qualifications: "B.Sc, MBA",
     description: "Maintaining campus safety and security protocols",
     category: "support",
     bio:
