@@ -42,7 +42,7 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
 
       - name: Install dependencies
-        run: pnpm ci --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Setup environment
         run: |
