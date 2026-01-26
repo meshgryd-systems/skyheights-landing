@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import SchoolSchema from "../components/SchoolSchema";
 import StoreProvider from "@/providers/StoreProvider";
+import { ErrorBoundaryWrapper } from "../components/ErrorBoundaryWrapper";
 import { Toaster } from "sonner";
 
 const playfair = Playfair_Display({
@@ -41,15 +42,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${playfair.variable} ${inter.variable} antialiased`}>
-        <StoreProvider>
-          <SchoolSchema />
-          <Header />
-          <main>{children}</main>
-          <Footer />
-          <Toaster position="top-center" richColors closeButton />
-        </StoreProvider>
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <body className={`${playfair.variable} ${inter.variable} antialiased`} suppressHydrationWarning>
+        <ErrorBoundaryWrapper>
+          <StoreProvider>
+            <SchoolSchema />
+            <Header />
+            <main>{children}</main>
+            <Footer />
+            <Toaster position="top-center" richColors closeButton />
+          </StoreProvider>
+        </ErrorBoundaryWrapper>
       </body>
     </html>
   );
