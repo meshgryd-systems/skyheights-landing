@@ -26,11 +26,12 @@ export interface NewsArticle {
 
 export interface PaginatedResponse<T> {
   data: T[];
-  pagination: {
+  meta: {
     page: number;
     limit: number;
     total: number;
     totalPages: number;
+    hasMore: boolean;
   };
 }
 
@@ -101,7 +102,8 @@ export enum STAFF_TYPE {
   TEACHER = "teacher",
   LEADERSHIP = "leadership",
   ADMINISTRATION = "administration",
-  STAFF = "staff"
+  NON_TEACHING = "non_teaching",
+  STAFF = "staff",
 }
 
 export interface StaffMember {

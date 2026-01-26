@@ -37,26 +37,60 @@ export default function GalleryPage() {
       setCurrentPage(1);
       setAllItems([]);
     }, 1000);
+
   }, [activeCategory]);
 
   useEffect(() => {
-    setTimeout(() => {
-      if (galleryData?.data) {
-        setAllItems(galleryData.data);
+    if (galleryData?.data) {
+      if (currentPage === 1) {
+        setTimeout(() => {
+          setAllItems(galleryData.data);
+        }, 1000);
+      } else {
+        setTimeout(() => {
+          setAllItems((prev) => {
+            const existingIds = new Set(prev.map((item) => item.id));
+            const newItems = galleryData.data.filter(
+              (item) => !existingIds.has(item.id)
+            );
+            return [...prev, ...newItems];
+          });
+        }, 1000);
       }
-    }, 1000);
-  }, [galleryData?.data]);
+    }
+  }, [galleryData?.data, currentPage]);
 
   const hasMore = useMemo(() => {
-    return galleryData?.pagination && currentPage < galleryData.pagination.totalPages;
-  }, [galleryData?.pagination, currentPage]);
+    return galleryData?.meta?.hasMore === true;
+  }, [galleryData?.meta?.hasMore]);
+
+  useEffect(() => {
+    if (!hasMore || isFetching || isLoading) return;
+
+    const currentRef = loadMoreRef.current;
+    if (!currentRef) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const firstEntry = entries[0];
+        if (firstEntry.isIntersecting && hasMore && !isFetching && !isLoading) {
+          setCurrentPage((prev) => prev + 1);
+        }
+      },
+      {
+        rootMargin: "200px"
+      }
+    );
+
+    observer.observe(currentRef);
+
+    return () => {
+      observer.unobserve(currentRef);
+    };
+  }, [hasMore, isFetching, isLoading]);
 
   const categories = [
     { id: "all", name: "All Photos" },
-    { id: "classrooms", name: "Classrooms & Learning" },
-    { id: "facilities", name: "Facilities" },
-    { id: "events", name: "Events & Activities" },
-    { id: "student-life", name: "Student Life" }
   ];
 
   const filteredItems = useMemo(() => {
@@ -68,7 +102,6 @@ export default function GalleryPage() {
 
   return (
     <>
-      {/* HERO - Phase 8: Let parents see the environment */}
       <section
         className="relative bg-[#eee5b5] text-white py-20 md:py-28 overflow-hidden"
         style={{ backgroundImage: "url('/pics/14895.jpg')", backgroundSize: "cover", backgroundPositionY: "-150px" }}
@@ -77,10 +110,10 @@ export default function GalleryPage() {
         <div className="absolute inset-0 bg-black/50"></div>
 
         <div className="container relative z-10">
-          <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight text-white!">
+          <h1 className="text-[3.5rem] md:text-[4rem] font-playfair font-bold mb-6 leading-tight !text-white drop-shadow-lg">
             Gallery
           </h1>
-          <p className="text-lg font-light md:text-xl text-white/95! max-w-4xl leading-relaxed">
+          <p className="text-lg font-light md:text-xl !text-white/95 max-w-4xl leading-relaxed drop-shadow-md">
             A glimpse into life, learning, and growth at Skyheights Academy.
           </p>
         </div>
@@ -188,7 +221,7 @@ export default function GalleryPage() {
 
             {/* Infinite scroll trigger */}
             {hasMore && (
-              <div ref={loadMoreRef} className="col-span-full py-8">
+              <div ref={loadMoreRef} className="py-8 min-h-[100px]">
                 {isFetching && (
                   <div className="text-center">
                     <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-heritage-brown"></div>
@@ -200,7 +233,7 @@ export default function GalleryPage() {
 
             {/* End of results */}
             {!hasMore && filteredItems.length > 0 && (
-              <div className="col-span-full text-center py-8">
+              <div className="text-center py-8">
                 <p className="text-text-grey text-sm">
                   You&apos;ve reached the end of the gallery
                 </p>

@@ -11,18 +11,12 @@ export default function StaffDetailPage() {
   const params = useParams();
   const staffIdOrSlug = params?.staffId as string;
 
-  // Check if it looks like an ID (UUID or numeric)
-  const isLikelyId = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(
-    staffIdOrSlug
-  ) || /^\d+$/.test(staffIdOrSlug);
-
-  // Use appropriate query based on whether it's an ID or slug
   const {
     data: staffBySlug,
     isLoading: loadingBySlug,
     error: errorBySlug
   } = useGetStaffBySlugQuery(staffIdOrSlug, {
-    skip: !staffIdOrSlug || isLikelyId
+    skip: !staffIdOrSlug
   });
 
   const {
@@ -30,17 +24,15 @@ export default function StaffDetailPage() {
     isLoading: loadingById,
     error: errorById
   } = useGetStaffByIdQuery(staffIdOrSlug, {
-    skip: !staffIdOrSlug || !isLikelyId
+    skip: !staffIdOrSlug
   });
 
   const staff = (staffBySlug || staffById) as StaffMember | undefined;
-  const isLoading = isLikelyId ? loadingById : loadingBySlug;
-  const error = isLikelyId ? errorById : errorBySlug;
+  const isLoading = loadingBySlug || loadingById;
+  const error = errorBySlug || errorById;
 
-  // Compute properties from backend data
   const fullName = staff ? `${staff.firstName} ${staff.lastName}`.trim() : "";
 
-  // Map STAFF_TYPE to category for display
   const getCategoryFromType = (type?: STAFF_TYPE): "leadership" | "teaching" | "support" => {
     if (!type) return "support";
     switch (type) {
@@ -151,60 +143,38 @@ export default function StaffDetailPage() {
       {/* STAFF DETAIL HERO */}
       <section className="bg-[#eee5b5] text-white py-20 md:py-28">
         <div className="container">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
-              {/* Staff Photo/Avatar */}
-              <div className="shrink-0">
-                {staff.photo?.url ? (
-                  <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden">
-                    <Image
-                      src={staff.photo.url}
-                      alt={fullName}
-                      width={160}
-                      height={160}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                ) : (
-                  <div
-                    className={`w-32 h-32 md:w-40 md:h-40 ${getCategoryColor(
-                      category
-                    )} rounded-full flex items-center justify-center`}
-                  >
-                    <svg
-                      className="w-16 h-16 md:w-20 md:h-20 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                      />
-                    </svg>
-                  </div>
-                )}
-              </div>
-
-              {/* Staff Info */}
-              <div className="flex-1 text-center md:text-left">
-                <div className="mb-4">
-                  <span className="inline-block px-4 py-1 bg-white/20 rounded-full text-sm mb-4">
-                    {getCategoryLabel(category)}
-                  </span>
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+            {/* Staff Photo/Avatar */}
+            <div className="shrink-0">
+              {staff.photo?.url ? (
+                <div className="w-32 h-32 md:w-40 md:h-40 overflow-hidden">
+                  <Image
+                    src={staff.photo.url}
+                    alt={fullName}
+                    width={160}
+                    height={160}
+                    className="object-cover w-full h-full"
+                  />
                 </div>
-                <h1 className="text-[3rem] md:text-[4rem] font-playfair font-bold mb-4 leading-tight">
-                  {fullName}
-                </h1>
-                <p className="text-xl md:text-2xl text-cream/95 mb-2 font-semibold">
-                  {staff.position}
-                </p>
-                {department && (
-                  <p className="text-lg text-cream/90 mb-4">{department}</p>
-                )}
+              ) : null}
+            </div>
+
+            {/* Staff Info */}
+            <div className="flex-1 text-center md:text-left">
+              <div className="mb-4">
+                <span className="inline-block px-4 py-1 bg-white/20 rounded-full text-sm mb-4">
+                  {getCategoryLabel(category)}
+                </span>
               </div>
+              <h1 className="text-[3rem] md:text-[4rem] font-playfair font-bold mb-4 leading-tight">
+                {fullName}
+              </h1>
+              <p className="text-xl md:text-2xl text-cream/95 mb-2 font-semibold">
+                {staff.position}
+              </p>
+              {department && (
+                <p className="text-lg text-cream/90 mb-4">{department}</p>
+              )}
             </div>
           </div>
         </div>
@@ -212,85 +182,83 @@ export default function StaffDetailPage() {
 
       {/* STAFF DETAILS */}
       <SectionContainer background="white">
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            {/* Qualifications */}
-            {staff.metadata?.qualifications && (
-              <div
-                className="bg-light-grey rounded-[14px] p-6"
-                style={{ boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.05)" }}
-              >
-                <h3 className="font-playfair font-bold text-lg text-deep-navy mb-4">
-                  Qualifications
-                </h3>
-                <p className="text-text-grey">
-                  {staff.metadata.qualifications}
-                </p>
-              </div>
-            )}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          {/* Qualifications */}
+          {staff.metadata?.qualifications && (
+            <div
+              className="bg-light-grey rounded-[14px] p-6"
+              style={{ boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.05)" }}
+            >
+              <h3 className="font-playfair font-bold text-lg text-deep-navy mb-4">
+                Qualifications
+              </h3>
+              <p className="text-text-grey">
+                {staff.metadata.qualifications}
+              </p>
+            </div>
+          )}
 
-            {/* Experience */}
-            {staff.metadata?.experience && (
-              <div
-                className="bg-light-grey rounded-[14px] p-6"
-                style={{ boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.05)" }}
-              >
-                <h3 className="font-playfair font-bold text-lg text-deep-navy mb-4">
-                  Experience
-                </h3>
-                <p className="text-text-grey">{staff.metadata.experience}</p>
-              </div>
-            )}
+          {/* Experience */}
+          {staff.metadata?.experience && (
+            <div
+              className="bg-light-grey rounded-[14px] p-6"
+              style={{ boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.05)" }}
+            >
+              <h3 className="font-playfair font-bold text-lg text-deep-navy mb-4">
+                Experience
+              </h3>
+              <p className="text-text-grey">{staff.metadata.experience}</p>
+            </div>
+          )}
 
-            {/* Specialization */}
-            {staff.metadata?.specialization && (
-              <div
-                className="bg-light-grey rounded-[14px] p-6"
-                style={{ boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.05)" }}
-              >
-                <h3 className="font-playfair font-bold text-lg text-deep-navy mb-4">
-                  Specialization
-                </h3>
-                <p className="text-text-grey">
-                  {staff.metadata.specialization}
-                </p>
-              </div>
-            )}
+          {/* Specialization */}
+          {staff.metadata?.specialization && (
+            <div
+              className="bg-light-grey rounded-[14px] p-6"
+              style={{ boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.05)" }}
+            >
+              <h3 className="font-playfair font-bold text-lg text-deep-navy mb-4">
+                Specialization
+              </h3>
+              <p className="text-text-grey">
+                {staff.metadata.specialization}
+              </p>
+            </div>
+          )}
 
-            {/* Contact Information */}
-            {(staff.email || staff.phoneNumber) && (
-              <div
-                className="bg-light-grey rounded-[14px] p-6"
-                style={{ boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.05)" }}
-              >
-                <h3 className="font-playfair font-bold text-lg text-deep-navy mb-4">
-                  Contact
-                </h3>
-                <div className="space-y-2">
-                  {staff.email && (
-                    <p className="text-text-grey text-sm">
-                      <a
-                        href={`mailto:${staff.email}`}
-                        className="hover:text-royal-blue transition-colors"
-                      >
-                        {staff.email}
-                      </a>
-                    </p>
-                  )}
-                  {staff.phoneNumber && (
-                    <p className="text-text-grey text-sm">
-                      <a
-                        href={`tel:${staff.phoneNumber}`}
-                        className="hover:text-royal-blue transition-colors"
-                      >
-                        {staff.phoneNumber}
-                      </a>
-                    </p>
-                  )}
-                </div>
+          {/* Contact Information */}
+          {(staff.email || staff.phoneNumber) && (
+            <div
+              className="bg-light-grey rounded-[14px] p-6"
+              style={{ boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.05)" }}
+            >
+              <h3 className="font-playfair font-bold text-lg text-deep-navy mb-4">
+                Contact
+              </h3>
+              <div className="space-y-2">
+                {staff.email && (
+                  <p className="text-text-grey text-sm">
+                    <a
+                      href={`mailto:${staff.email}`}
+                      className="hover:text-royal-blue transition-colors"
+                    >
+                      {staff.email}
+                    </a>
+                  </p>
+                )}
+                {staff.phoneNumber && (
+                  <p className="text-text-grey text-sm">
+                    <a
+                      href={`tel:${staff.phoneNumber}`}
+                      className="hover:text-royal-blue transition-colors"
+                    >
+                      {staff.phoneNumber}
+                    </a>
+                  </p>
+                )}
               </div>
-            )}
-          </div>
+            </div>
+          )}
 
           {/* Bio */}
           {staff.bio && (

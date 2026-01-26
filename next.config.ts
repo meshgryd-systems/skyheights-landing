@@ -35,6 +35,12 @@ const nextConfig: NextConfig = {
         hostname: "via.placeholder.com",
         pathname: "/**"
       },
+      // Cloudinary images
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/**"
+      },
       // API assets domain (if configured and different from localhost)
       ...(assetsDomain && assetsDomain.hostname !== "localhost"
         ? [

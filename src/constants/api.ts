@@ -15,7 +15,7 @@ export const API_ROUTES = {
     STAFF: {
       LIST: "/public/staff",
       DETAIL: "/public/staff/:id",
-      DETAIL_BY_SLUG: "/public/staff/slug/:slug"
+      DETAIL_BY_SLUG: "/public/staff/:slug"
     },
     EVENTS: {
       LIST: "/public/events",

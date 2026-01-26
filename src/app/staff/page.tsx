@@ -70,10 +70,9 @@ export default function StaffPage() {
   );
   const supportStaff = allStaff.filter(
     (staff) =>
-      (staff.type === STAFF_TYPE.ADMINISTRATION ||
-        staff.type === STAFF_TYPE.STAFF ||
-        !staff.type) &&
-      staff.category === "support"
+    (staff.type === STAFF_TYPE.ADMINISTRATION || staff.type === STAFF_TYPE.NON_TEACHING ||
+      staff.type === STAFF_TYPE.STAFF ||
+      !staff.type)
   );
 
   const departments = Array.from(
@@ -129,7 +128,7 @@ export default function StaffPage() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {leadershipTeam.map((staff) => (
+              {leadershipTeam.length > 0 ? leadershipTeam.map((staff) => (
                 <Link
                   key={staff.id}
                   href={`/staff/${getStaffSlug(staff)}`}
@@ -186,7 +185,11 @@ export default function StaffPage() {
                     </p>
                   )}
                 </Link>
-              ))}
+              )) : (
+                <div className="text-center col-span-full py-20 flex items-center w-full justify-center">
+                  <p className="text-text-grey text-2xl font-bold">No staff found.</p>
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -206,7 +209,7 @@ export default function StaffPage() {
             growth across all academic levels.
           </p>
 
-          {teachingStaffByDept.map((department, deptIndex) => (
+          {teachingStaffByDept.length > 0 ? teachingStaffByDept.map((department, deptIndex) => (
             <div key={deptIndex} className="mb-12 last:mb-0">
               <h3 className="font-playfair font-bold text-2xl text-deep-navy mb-6 text-center">
                 {department.department}
@@ -266,7 +269,11 @@ export default function StaffPage() {
                 ))}
               </div>
             </div>
-          ))}
+          )) : (
+            <div className="text-center col-span-full py-20 flex items-center w-full justify-center">
+              <p className="text-text-grey">No teaching staff found.</p>
+            </div>
+          )}
         </div>
       </SectionContainer>
 
@@ -284,7 +291,7 @@ export default function StaffPage() {
             environment.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {supportStaff.map((staff) => (
+            {supportStaff.length > 0 ? supportStaff.map((staff) => (
               <Link
                 key={staff.id}
                 href={`/staff/${getStaffSlug(staff)}`}
@@ -331,7 +338,11 @@ export default function StaffPage() {
                   </p>
                 )}
               </Link>
-            ))}
+            )) : (
+              <div className="text-center col-span-full py-20 flex items-center w-full justify-center">
+                <p className="text-text-grey">No support staff found.</p>
+              </div>
+            )}
           </div>
         </div>
       </SectionContainer>

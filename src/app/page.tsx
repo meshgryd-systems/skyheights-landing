@@ -185,11 +185,11 @@ export default function Home() {
               className="object-cover"
             />
             <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent flex items-end">
-              <div className="p-8 text-white">
-                <p className="text-2xl font-playfair font-bold">
+              <div className="p-5">
+                <p className="text-2xl font-playfair font-bold !text-white drop-shadow-lg">
                   Excellence Since 2017
                 </p>
-                <p className="text-sm mt-2 opacity-90">
+                <p className="text-sm opacity-90 !text-white drop-shadow-md">
                   Building Future Leaders
                 </p>
               </div>
