@@ -59,7 +59,7 @@ jobs:
       - name: Upload deployment package
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{ secrets.   }}
+          host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
