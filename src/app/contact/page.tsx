@@ -34,7 +34,7 @@ export default function ContactPage() {
           <h1 className="font-playfair font-bold text-4xl md:text-5xl lg:text-6xl mb-2 text-white! drop-shadow-lg">
             Contact Us
           </h1>
-          <p className="text-lg font-light md:text-xl !text-white/95 max-w-3xl drop-shadow-md">
+          <p className="text-lg font-light md:text-xl text-white/95! max-w-3xl drop-shadow-md">
             We&apos;re here to answer your questions and help you on your
             journey with Skyheights Academy
           </p>
