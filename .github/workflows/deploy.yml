@@ -8,85 +8,100 @@ on:
 
 jobs:
   deploy:
-    name:
-      Deploy to ${{ github.ref_name == 'main' && 'Production' || 'Staging' }}
+    name: Deploy to ${{ github.ref_name == 'main' && 'Production' || 'Staging' }}
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
+      - uses: actions/checkout@v4
 
-      - name: 📦 Setup pnpm
-        uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v4
         with:
           version: 9
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: "pnpm"
 
       - name: Cache Next.js build
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             .next/cache
             node_modules/.cache
-          key:
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-${{
             hashFiles('**.[jt]s', '**.[jt]sx') }}
           restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Setup environment
-        run: |
-          echo "NODE_ENV=production" > .env.production
-          echo "API_URL=https://api.skyheightsacademy.ng/api" >> .env.production
+      - name: Setup environment (production)
+        if: github.ref_name == 'main'
+        run: mv .env.production .env
 
-      - name: Build application
+      - name: Setup environment (staging)
+        if: github.ref_name == 'staging'
         run: |
-          export NODE_OPTIONS=--max-old-space-size=4096
-          pnpm run build
+          rm -f .env.production .env.production.local .env.local
+          mv .env.staging .env
 
-      - name: Deploy to server
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: Build Next.js application
+        run: pnpm run build:deploy
+        env:
+          NODE_OPTIONS: "--max-old-space-size=4096"
+
+      - name: Create deployment package
+        run: |
+          # Pack contents of .next/standalone so extract lands in docroot (no standalone/ subfolder)
+          tar -czf standalone-deploy.tar.gz -C .next/standalone .
+          ls -lh standalone-deploy.tar.gz
+
+      - name: Upload deployment package
+        uses: appleboy/scp-action@v0.1.7
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username:
-            ${{ github.ref_name == 'main' && secrets.FTP_USERNAME ||
-            secrets.FTP_STAGING_USERNAME }}
-          password:
-            ${{ github.ref_name == 'main' && secrets.FTP_PASSWORD ||
-            secrets.FTP_STAGING_PASSWORD }}
-          protocol: ftps
-          local-dir: ./
-          log-level: verbose
-          exclude: |
-            **/.git/**
-            **/.gitignore
-            **/node_modules/**
-            **/.github/**
-            **/.vscode/**
-            **/README.md
-            **/.env*
-            **/package-lock.json
-            **/yarn.lock
-            **/*.log
-            **/.DS_Store
-            **/Thumbs.db
-            **/coverage/**
-            **/.nyc_output/**
-            **/.next/cache/**
-            **/src/**
-            **/tsconfig.json
-            **/next.config.ts
-            **/postcss.config.mjs
-            **/tailwind.config.ts
-            **/eslint.config.mjs
-            **/next-env.d.ts
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
+          port: ${{ secrets.SERVER_PORT }}
+          source: "standalone-deploy.tar.gz"
+          target: "/tmp/"
+          overwrite: true
+          timeout: 2m
+          command_timeout: 20m
+
+      - name: Deploy application
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
+          port: ${{ secrets.SERVER_PORT || 22 }}
+          command_timeout: 10m
+          script: |
+            set -e
+            if [ "${{ github.ref_name }}" = "staging" ]; then
+              DEPLOY="/home/amrohvgf/staging.skyheightsacademy.ng"
+            else
+              DEPLOY="/home/amrohvgf/skyheightsacademy.ng"
+            fi
+            cd "$DEPLOY"
+
+            tar -xzf /tmp/standalone-deploy.tar.gz
+            rm -f /tmp/standalone-deploy.tar.gz
+
+            chmod -R 755 .next node_modules public 2>/dev/null || true
+            chmod 755 server.js 2>/dev/null || chmod 755 server.mjs 2>/dev/null || true
+
+            [ -f ".env.production" ] && cp ".env.production" .env || true
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: skyheights-build-${{ github.ref_name }}
+          path: |
+            .next/standalone/
+          retention-days: 7
