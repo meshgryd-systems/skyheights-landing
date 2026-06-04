@@ -138,8 +138,10 @@ export default function GalleryPage() {
 
         {/* GALLERY GRID - Phase 8: Clean presentation, lazy loading ready */}
         {isLoading && currentPage === 1 ? (
-          <div className="text-center py-12">
-            <p className="text-text-grey">Loading gallery...</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {Array.from({ length: 9 }).map((_, i) => (
+              <div key={i} className="rounded overflow-hidden bg-light-grey animate-pulse" style={{ aspectRatio: "4/3" }}></div>
+            ))}
           </div>
         ) : error ? (
           <div className="text-center py-12">
@@ -196,9 +198,44 @@ export default function GalleryPage() {
             </div>
 
             {filteredItems.length === 0 && !isLoading && (
-              <div className="text-center py-12">
-                <p className="text-text-grey">
-                  No photos available in this category yet.
+              <div className="text-center py-20 max-w-2xl mx-auto">
+                <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-light-grey flex items-center justify-center" aria-hidden="true">
+                  <svg className="w-10 h-10 text-text-grey" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <h3 className="font-playfair font-bold text-2xl text-deep-navy mb-3">
+                  Photos Coming Soon
+                </h3>
+                <p className="text-text-grey leading-relaxed mb-8">
+                  We are currently curating photos of our school activities,
+                  facilities, events, and student life. Check back soon — our
+                  gallery will be filled with moments from Skyheights Academy.
+                </p>
+                <div className="bg-light-grey rounded-xl p-6 text-left max-w-md mx-auto mb-8">
+                  <p className="text-sm font-semibold text-deep-navy mb-3">Coming to the gallery:</p>
+                  <ul className="space-y-2 text-sm text-text-grey">
+                    {[
+                      "Montessori room & Early Years activities",
+                      "Science laboratory & ICT sessions",
+                      "Playground & sports day events",
+                      "School garden & Environmental Club",
+                      "Annual events, assemblies & graduation"
+                    ].map((item) => (
+                      <li key={item} className="flex items-center gap-2">
+                        <svg className="w-4 h-4 text-heritage-brown shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <p className="text-sm text-text-grey">
+                  Want to see the school for yourself?{" "}
+                  <a href="/contact" className="text-heritage-brown font-medium hover:underline">
+                    Book a campus visit →
+                  </a>
                 </p>
               </div>
             )}

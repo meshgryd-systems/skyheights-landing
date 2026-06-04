@@ -1,12 +1,21 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import Button from "./Button";
 
 export default function Header() {
+  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [expandedMobileItems, setExpandedMobileItems] = useState<string[]>([]);
+
+  const toggleMobileItem = (name: string) => {
+    setExpandedMobileItems((prev) =>
+      prev.includes(name) ? prev.filter((i) => i !== name) : [...prev, name]
+    );
+  };
 
   const navigation = [
     { name: "Home", href: "/" },
@@ -51,7 +60,11 @@ export default function Header() {
               <div key={item.name} className="relative group/nav">
                 <Link
                   href={item.href}
-                  className="px-3 py-2 text-sm font-medium text-deep-navy hover:text-heritage-brown transition-colors relative group flex items-center"
+                  className={`px-3 py-2 text-sm font-medium transition-colors relative group flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-heritage-brown rounded-sm ${
+                    pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href))
+                      ? "text-heritage-brown"
+                      : "text-deep-navy hover:text-heritage-brown"
+                  }`}
                 >
                   {item.name}
                   {item.submenu && (
@@ -60,6 +73,7 @@ export default function Header() {
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
+                      aria-hidden="true"
                     >
                       <path
                         strokeLinecap="round"
@@ -69,7 +83,11 @@ export default function Header() {
                       />
                     </svg>
                   )}
-                  <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-heritage-brown transform scale-x-0 group-hover:scale-x-100 transition-transform duration-250 origin-left"></span>
+                  <span className={`absolute bottom-0 left-3 right-3 h-[2px] bg-heritage-brown transform transition-transform duration-250 origin-left ${
+                    pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href))
+                      ? "scale-x-100"
+                      : "scale-x-0 group-hover:scale-x-100"
+                  }`}></span>
                 </Link>
                 {item.submenu && (
                   <div className="absolute top-full left-0 mt-0 bg-white border border-divider-grey rounded-lg shadow-lg py-2 min-w-[200px] opacity-0 invisible group-hover/nav:opacity-100 group-hover/nav:visible transition-all duration-250">
@@ -98,16 +116,18 @@ export default function Header() {
           {/* Mobile menu button */}
           <button
             type="button"
-            className="lg:hidden p-2 rounded-md text-deep-navy hover:bg-light-grey"
+            className="lg:hidden p-2 rounded-md text-deep-navy hover:bg-light-grey focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-heritage-brown"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-expanded={mobileMenuOpen}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
-            <span className="sr-only">Open menu</span>
             {mobileMenuOpen ? (
               <svg
                 className="h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -122,6 +142,7 @@ export default function Header() {
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -138,16 +159,55 @@ export default function Header() {
         {mobileMenuOpen && (
           <div className="lg:hidden border-t border-divider-grey py-4">
             <div className="flex flex-col space-y-1">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="px-3 py-3 text-base font-medium text-deep-navy hover:bg-light-grey rounded-md"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
+              {navigation.map((item) =>
+                item.submenu ? (
+                  <div key={item.name}>
+                    <button
+                      type="button"
+                      className="w-full flex items-center justify-between px-3 py-3 text-base font-medium text-deep-navy hover:bg-light-grey rounded-md"
+                      onClick={() => toggleMobileItem(item.name)}
+                    >
+                      <span>{item.name}</span>
+                      <svg
+                        className={`w-4 h-4 transition-transform duration-200 ${expandedMobileItems.includes(item.name) ? "rotate-180" : ""}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+                    {expandedMobileItems.includes(item.name) && (
+                      <div className="pl-4 mt-1 space-y-1">
+                        {item.submenu.map((subitem) => (
+                          <Link
+                            key={subitem.name}
+                            href={subitem.href}
+                            className="block px-3 py-2 text-sm text-deep-navy hover:bg-light-grey hover:text-heritage-brown rounded-md"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            {subitem.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="px-3 py-3 text-base font-medium text-deep-navy hover:bg-light-grey rounded-md"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                )
+              )}
               <div className="pt-4 px-3">
                 <Button
                   href="/admissions"

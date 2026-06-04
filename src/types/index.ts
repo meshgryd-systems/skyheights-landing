@@ -1,3 +1,20 @@
+export enum TESTIMONIAL_STATUS {
+  DRAFT = "draft",
+  PUBLISHED = "published"
+}
+
+export interface Testimonial {
+  id: string;
+  name: string;
+  role: string;
+  quote: string;
+  rating: number;
+  status: TESTIMONIAL_STATUS;
+  sortOrder: number;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 export enum NEWS_STATUS {
   DRAFT = "draft",
   PUBLISHED = "published",
