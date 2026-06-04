@@ -47,8 +47,14 @@ export default function RootLayout({
         <ErrorBoundaryWrapper>
           <ClientProviders>
             <SchoolSchema />
+            <a
+              href="#main-content"
+              className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1100] focus:px-4 focus:py-2 focus:bg-heritage-brown focus:text-white focus:rounded-md focus:font-medium focus:outline-none"
+            >
+              Skip to main content
+            </a>
             <Header />
-            <main>{children}</main>
+            <main id="main-content">{children}</main>
             <Footer />
             <Toaster position="top-center" richColors closeButton />
           </ClientProviders>

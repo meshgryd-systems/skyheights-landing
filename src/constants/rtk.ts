@@ -12,5 +12,6 @@ export const RTK_TAGS = {
   COMPLAINT: "Complaint",
   REVIEW: "Review",
   AGENT: "Agent",
-  FEEDBACK: "Feedback"
+  FEEDBACK: "Feedback",
+  TESTIMONIAL: "Testimonial"
 } as const;

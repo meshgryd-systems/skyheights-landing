@@ -3,7 +3,6 @@ import React from "react";
 const Curriculum = () => {
   return (
     <>
-      {" "}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-8">
         <div className="bg-light-grey p-8 rounded-lg">
           <h3 className="font-playfair font-bold text-2xl text-deep-navy mb-4">

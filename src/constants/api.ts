@@ -33,6 +33,9 @@ export const API_ROUTES = {
     },
     CONTACT: {
       SUBMIT: "/public/contact"
+    },
+    TESTIMONIALS: {
+      LIST: "/public/testimonials"
     }
   },
 };

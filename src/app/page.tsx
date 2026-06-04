@@ -2,15 +2,24 @@ import Curriculum from "@/components/Curriculum";
 import Button from "../components/Button";
 import SectionContainer from "../components/SectionContainer";
 import SectionHeader from "../components/SectionHeader";
+import TestimonialsSection from "../components/TestimonialsSection";
 import Image from "next/image";
 import {
   HiBuildingOffice,
   HiComputerDesktop,
   HiBookOpen,
   HiBeaker,
-  HiClock,
+  HiTrophy,
   HiShieldCheck
 } from "react-icons/hi2";
+import {
+  LuSun,
+  LuPalette,
+  LuMessageCircle,
+  LuUsers,
+  LuHeartHandshake,
+  LuGraduationCap
+} from "react-icons/lu";
 
 export default function Home() {
   return (
@@ -21,8 +30,8 @@ export default function Home() {
         className="relative min-h-[85vh] flex items-center bg-[#eee5b5] text-white overflow-hidden"
         style={{ backgroundImage: "url('/pics/14872.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
       >
-        {/* Overlay for contrast */}
-        <div className="absolute inset-0 bg-black/40 z-10"></div>
+        {/* Overlay - directional, warmer on left for text legibility */}
+        <div className="absolute inset-0 bg-linear-to-r from-black/65 via-black/40 to-black/15 z-10"></div>
 
         {/* Content */}
         <div className="relative container py-20 md:py-24 w-full z-20">
@@ -79,6 +88,32 @@ export default function Home() {
         </div>
       </section>
 
+      {/* STATS / ACHIEVEMENTS STRIP */}
+      <section className="bg-heritage-brown py-14">
+        <div className="container">
+          <div className="grid grid-cols-2 md:grid-cols-4">
+            {[
+              { value: "2017", label: "Est." },
+              { value: "4", label: "Academic Levels" },
+              { value: "3", label: "Curricula Offered" },
+              { value: "98%", label: "Exam Pass Rate" }
+            ].map((stat, i) => (
+              <div
+                key={stat.label}
+                className={`text-white text-center py-6 px-4 ${i < 3 ? "md:border-r border-white/20" : ""} ${i < 2 ? "border-b md:border-b-0 border-white/20" : ""}`}
+              >
+                <div className="text-4xl md:text-5xl font-playfair font-bold mb-2 tabular-nums">
+                  {stat.value}
+                </div>
+                <div className="text-xs text-white/65 font-medium uppercase tracking-[0.15em]">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* TRUST SIGNAL STRIP */}
       <section className="bg-white border-b border-divider-grey py-6">
         <div className="container">
@@ -88,6 +123,7 @@ export default function Home() {
                 className="w-6 h-6 text-heritage-brown shrink-0"
                 fill="currentColor"
                 viewBox="0 0 20 20"
+                aria-hidden="true"
               >
                 <path
                   fillRule="evenodd"
@@ -105,6 +141,7 @@ export default function Home() {
                 className="w-6 h-6 text-heritage-brown shrink-0"
                 fill="currentColor"
                 viewBox="0 0 20 20"
+                aria-hidden="true"
               >
                 <path
                   fillRule="evenodd"
@@ -122,6 +159,7 @@ export default function Home() {
                 className="w-6 h-6 text-heritage-brown shrink-0"
                 fill="currentColor"
                 viewBox="0 0 20 20"
+                aria-hidden="true"
               >
                 <path
                   fillRule="evenodd"
@@ -139,6 +177,7 @@ export default function Home() {
                 className="w-6 h-6 text-heritage-brown shrink-0"
                 fill="currentColor"
                 viewBox="0 0 20 20"
+                aria-hidden="true"
               >
                 <path
                   fillRule="evenodd"
@@ -206,7 +245,7 @@ export default function Home() {
           centered
         />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
-          <div className="bg-white rounded-lg border border-divider-grey hover:border-heritage-brown hover:shadow-xl transition-all duration-300 p-8 group">
+          <div className="bg-white rounded-lg border border-divider-grey hover:border-l-4 hover:border-l-heritage-brown hover:border-heritage-brown hover:shadow-xl transition-[border-color,border-left-width,box-shadow] duration-300 p-8 group cursor-pointer">
             <h3 className="font-playfair font-bold text-2xl text-deep-navy mb-3">
               Creche
             </h3>
@@ -230,7 +269,7 @@ export default function Home() {
             </a>
           </div>
 
-          <div className="bg-white rounded-lg border border-divider-grey hover:border-heritage-brown hover:shadow-xl transition-all duration-300 p-8 group">
+          <div className="bg-white rounded-lg border border-divider-grey hover:border-l-4 hover:border-l-heritage-brown hover:border-heritage-brown hover:shadow-xl transition-[border-color,border-left-width,box-shadow] duration-300 p-8 group cursor-pointer">
             <h3 className="font-playfair font-bold text-2xl text-deep-navy mb-3">
               Nursery
             </h3>
@@ -254,7 +293,7 @@ export default function Home() {
             </a>
           </div>
 
-          <div className="bg-white rounded-lg border border-divider-grey hover:border-heritage-brown hover:shadow-xl transition-all duration-300 p-8 group">
+          <div className="bg-white rounded-lg border border-divider-grey hover:border-l-4 hover:border-l-heritage-brown hover:border-heritage-brown hover:shadow-xl transition-[border-color,border-left-width,box-shadow] duration-300 p-8 group cursor-pointer">
             <h3 className="font-playfair font-bold text-2xl text-deep-navy mb-3">
               Primary
             </h3>
@@ -279,7 +318,7 @@ export default function Home() {
             </a>
           </div>
 
-          <div className="bg-white rounded-lg border border-divider-grey hover:border-heritage-brown hover:shadow-xl transition-all duration-300 p-8 group">
+          <div className="bg-white rounded-lg border border-divider-grey hover:border-l-4 hover:border-l-heritage-brown hover:border-heritage-brown hover:shadow-xl transition-[border-color,border-left-width,box-shadow] duration-300 p-8 group cursor-pointer">
             <h3 className="font-playfair font-bold text-2xl text-deep-navy mb-3">
               Secondary
             </h3>
@@ -323,7 +362,7 @@ export default function Home() {
             { icon: HiComputerDesktop, label: "ICT Laboratory" },
             { icon: HiBookOpen, label: "School Library" },
             { icon: HiBeaker, label: "Science Labs" },
-            { icon: HiClock, label: "Sports Ground" },
+            { icon: HiTrophy, label: "Sports Ground" },
             { icon: HiShieldCheck, label: "24-Hour CCTV" }
           ].map((item, index) => {
             const IconComponent = item.icon;
@@ -332,7 +371,7 @@ export default function Home() {
                 key={index}
                 className="bg-white rounded-lg p-6 text-center hover:shadow-lg transition-shadow"
               >
-                <div className="w-12 h-12 mx-auto mb-3 text-heritage-brown flex items-center justify-center">
+                <div className="w-12 h-12 mx-auto mb-3 text-heritage-brown flex items-center justify-center" aria-hidden="true">
                   <IconComponent className="w-12 h-12" />
                 </div>
                 <p className="text-sm font-medium text-deep-navy">
@@ -348,6 +387,7 @@ export default function Home() {
               className="w-6 h-6 text-heritage-brown shrink-0 mt-1"
               fill="currentColor"
               viewBox="0 0 20 20"
+              aria-hidden="true"
             >
               <path
                 fillRule="evenodd"
@@ -378,7 +418,7 @@ export default function Home() {
             {
               title: "Qualified and Dedicated Educators",
               description:
-                "Our teaching staff comprises experienced, certified professionals committed to nurturing each child&apos;s academic and personal growth."
+                "Our teaching staff comprises experienced, certified professionals committed to nurturing each child's academic and personal growth."
             },
             {
               title: "Strong Moral and Character Formation",
@@ -400,6 +440,9 @@ export default function Home() {
               key={index}
               className="flex items-start space-x-4 p-6 bg-light-grey rounded-lg"
             >
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-heritage-brown text-white flex items-center justify-center font-playfair font-bold text-lg">
+                {index + 1}
+              </div>
               <div>
                 <h3 className="font-playfair font-bold text-xl text-deep-navy mb-2">
                   {item.title}
@@ -411,14 +454,98 @@ export default function Home() {
         </div>
       </SectionContainer>
 
+      {/* STUDENT LIFE HIGHLIGHTS */}
+      <SectionContainer background="white">
+        <SectionHeader
+          title="A Richer School Experience"
+          subtitle="Beyond academics — every child at Skyheights Academy participates in a full, purposeful school life"
+          centered
+        />
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-6xl mx-auto mb-10">
+          {[
+            { label: "Morning Circle", Icon: LuSun, desc: "Daily" },
+            { label: "Clubs & Activities", Icon: LuPalette, desc: "9+ Clubs" },
+            { label: "Counselling", Icon: LuMessageCircle, desc: "All Levels" },
+            { label: "Gender Equality", Icon: LuUsers, desc: "Inclusive" },
+            { label: "Inclusive Education", Icon: LuHeartHandshake, desc: "Remedial Support" },
+            { label: "Annual Events", Icon: LuGraduationCap, desc: "9 Events" }
+          ].map((item) => (
+            <a
+              key={item.label}
+              href="/student-life"
+              className="bg-light-grey rounded-xl p-5 text-center hover:bg-cream hover:shadow-md transition-[background-color,box-shadow] duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-heritage-brown"
+            >
+              <div className="flex justify-center mb-3" aria-hidden="true">
+                <item.Icon className="w-7 h-7 text-heritage-brown" />
+              </div>
+              <p className="font-playfair font-bold text-sm text-deep-navy leading-tight mb-1">{item.label}</p>
+              <p className="text-xs text-text-grey">{item.desc}</p>
+            </a>
+          ))}
+        </div>
+        <div className="text-center">
+          <Button href="/student-life" variant="outline">
+            Discover Student Life →
+          </Button>
+        </div>
+      </SectionContainer>
+
+      {/* GALLERY TEASER */}
+      <section className="bg-deep-navy py-20">
+        <div className="container">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="text-sm text-white/60 uppercase tracking-widest font-medium mb-3">Life at Skyheights</p>
+              <h2 className="font-playfair font-bold text-[2.25rem] md:text-[2.75rem] text-white mb-6 leading-tight">
+                See Our School in Action
+              </h2>
+              <p className="text-white/75 text-lg leading-relaxed mb-8">
+                From Montessori classrooms to sports day, morning circles to
+                graduation — our gallery captures the vibrant, daily life of
+                Skyheights Academy. Photos of our facilities, activities, and
+                student achievements are regularly updated.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button href="/gallery" variant="primary" size="lg">
+                  View Gallery
+                </Button>
+                <Button href="/contact" variant="secondary" size="lg">
+                  Book a School Visit
+                </Button>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { src: "/pics/14872.jpg", alt: "School campus at Skyheights Academy" },
+                { src: "/pics/14875.jpg", alt: "Learning environment at Skyheights Academy" },
+                { src: "/pics/14915.jpg", alt: "Student activities at Skyheights Academy" },
+                { src: "/pics/14920.jpg", alt: "Creche programme at Skyheights Academy" }
+              ].map((img, i) => (
+                <div key={i} className={`relative overflow-hidden rounded-xl bg-white/10 ${i === 0 ? "row-span-2" : "h-32"}`} style={{ minHeight: i === 0 ? "264px" : "128px" }}>
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    className="object-cover opacity-80 hover:opacity-100 transition-opacity duration-300"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS SECTION */}
+      <TestimonialsSection />
+
       {/* CALL TO ACTION (ADMISSIONS PUSH) */}
-      {/* Phase 3: NO gradients - solid deep navy */}
-      <section className="bg-[#eee5b5] text-white py-20 md:py-24">
+      <section className="bg-deep-navy py-20 md:py-24">
         <div className="container text-center">
-          <h2 className="font-playfair font-bold text-[2.5rem] md:text-[2.75rem] mb-6 leading-tight">
+          <h2 className="font-playfair font-bold text-[2.5rem] md:text-[2.75rem] text-white mb-6 leading-tight">
             Give Your Child a Strong Start
           </h2>
-          <p className="text-lg text-center md:text-xl text-cream/90 mb-10 leading-relaxed max-w-3xl mx-auto">
+          <p className="text-lg text-center md:text-xl text-white/75 mb-10 leading-relaxed max-w-3xl mx-auto">
             Admissions are open for qualified pupils across all academic levels.
             Begin your child&apos;s journey toward excellence today.
           </p>

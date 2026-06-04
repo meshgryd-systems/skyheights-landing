@@ -90,12 +90,13 @@ export default function ContactPage() {
               title: "Call Us",
               content: (
                 <>
+                  {/* TODO: Replace both href="tel:+234..." and display text with actual school phone numbers */}
                   <p className="mb-2">
                     <a
                       href="tel:+234"
                       className="hover:text-royal-blue transition-colors"
                     >
-                      +234 xxx xxx xxxx
+                      +234 — (Number to be added)
                     </a>
                   </p>
                   <p className="mb-2">
@@ -103,7 +104,7 @@ export default function ContactPage() {
                       href="tel:+234"
                       className="hover:text-royal-blue transition-colors"
                     >
-                      +234 xxx xxx xxxx
+                      +234 — (Number to be added)
                     </a>
                   </p>
                   <p className="text-sm text-text-grey mt-3">
