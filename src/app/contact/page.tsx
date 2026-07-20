@@ -101,10 +101,18 @@ export default function ContactPage() {
                 <>
                   <p className="mb-2">
                     <a
-                      href="tel:+2349095441116"
+                      href="tel:+2349098685966"
                       className="hover:text-royal-blue transition-colors"
                     >
-                      +234 909 544 1116
+                      0909 868 5966
+                    </a>
+                  </p>
+                  <p className="mb-2">
+                    <a
+                      href="tel:+2349079783509"
+                      className="hover:text-royal-blue transition-colors"
+                    >
+                      0907 978 3509
                     </a>
                   </p>
                   <p className="text-sm text-text-grey mt-3">
